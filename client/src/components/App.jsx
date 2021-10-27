@@ -6,7 +6,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>
-          ONLY PUT COMPONENTS IN APP
+          ONLY PUT COMPONENTS IN APP!!!!!
         </h1>
       </div>
     );
