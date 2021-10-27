@@ -5,9 +5,9 @@
   "main": "webpack.config.js",
   "scripts": {
     "clean": "rm dist/bundle.js",
-    "build-dev": "webpack --mode development",
+    "build-dev": "webpack --mode development -w",
     "build-prod": "webpack --mode production",
-    "start": "webpack serve --hot --mode development"
+    "start": "cd ./server && nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,9 @@
     "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0"
