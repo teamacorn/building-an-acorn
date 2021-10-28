@@ -1,16 +1,18 @@
 import React from "react";
 import { hot } from 'react-hot-loader/root';
+import CakeContainer from './CakeContainer.js';
+import { Provider } from 'react-redux';
+import store from '../redux/store.js';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>
-          ONLY PUT COMPONENTS IN APP!
-        </h1>
-      </div>
-    );
-  }
+function App (){
+  return (
+    <Provider store={store}>
+      {console.log(store.getState())}
+    <div className="App">
+      <CakeContainer />
+    </div>
+    </Provider>
+  );
 }
 
 export default hot(App);
