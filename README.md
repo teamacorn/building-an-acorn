@@ -1,4 +1,5 @@
 # building-an-acorn
+``` javascript
 {
   currentItemIndex: null, //
 
@@ -24,13 +25,6 @@
 }
 
 
-
-redux
-  |-overview
-      - action
-      - reducer
-
-      - type
 
 
 export const fetchUsers = (id) => {
@@ -72,12 +66,9 @@ export const fetchUsersFailure = error => {
 }
 
 
-
-
-
-
 // under overview container
 mapStateTOProps = (state) => ({
   rating: state.ratingAndREview.rating,
   currentStyle: state.overview.currentStyle
 })
+```
