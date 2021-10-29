@@ -7,7 +7,6 @@ import store from '../redux/store.js';
 function App (){
   return (
     <Provider store={store}>
-      {console.log(store.getState())}
     <div className="App">
       <CakeContainer />
     </div>
