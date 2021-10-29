@@ -7,9 +7,8 @@ import store from '../redux/store.js';
 function App (){
   return (
     <Provider store={store}>
-    <div className="App">
-      <CakeContainer />
-    </div>
+      <div className="App">
+      </div>
     </Provider>
   );
 }
