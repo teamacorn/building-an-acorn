@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const API_KEY = require('./config/config.js')
+
+
 const app = express();
 const port = 3000;
 
