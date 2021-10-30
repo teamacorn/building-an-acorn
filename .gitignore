@@ -17,3 +17,6 @@ Thumbs.db
 
 # api
 config.js
+
+# ignore bundle.js for now
+bundle.js
