@@ -3,7 +3,7 @@ import productListReducer from './productList/productListReducer';
 import currentProductReducer from './currentProduct/currentProductReducer';
 const rootReducer = combineReducers({
   productList: productListReducer ,
-  currentProductReducer: currentProductReducer
+  currentProduct: currentProductReducer
 });
 
 export default rootReducer;

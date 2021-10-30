@@ -1,21 +1,32 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+
 const API_KEY = require('./config.js');
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx';
 const config = {
   headers : {
-    'Authorization':
-    API_KEY
+    'Authorization': API_KEY
   }
 }
 
 const app = express();
 const port = 3000;
 
+// middlewares
 app.use(cors());
 app.use(express.json())
 app.use(express.static(__dirname + '/../client/dist'))
+
+// import routers
+const qaRouters = require('./routes/qaRouter');
+const interactionsRouter = require('./routes/interactionsRouter');
+
+// use routers
+app.use('/qa', qaRouters);
+app.use('/interactions', interactionsRouter);
+
+
 
 app.get('/products', (req, res) => {
   axios.get(`${url}/products`, config)
