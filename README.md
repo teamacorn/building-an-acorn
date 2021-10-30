@@ -1,8 +1,26 @@
 # building-an-acorn
+
+## References
+- Redux
+  - gopinav's [react-redux-tutorial](https://github.com/gopinav/React-Redux-Tutorials)
+  - [A dummy's guide to redux and thunk in react](https://codepen.io/stowball/post/a-dummy-s-guide-to-redux-and-thunk-in-react)
+
+## Available Scripts
+- To build and bundle files using webpack
+```
+npm run build-dev
+```
+- To start the server
+```
+npm run start
+```
+
+## Notes
 ``` javascript
 {
-  currentItemIndex: null, //
-
+  currentProduct: null,
+  productList: [],
+  
   overview: {
     styleList: [],
     currentStyle: styleId,
