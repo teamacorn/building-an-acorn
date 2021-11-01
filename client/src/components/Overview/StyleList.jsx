@@ -15,7 +15,7 @@ const StyleList = () => {
     console.log(styleList.styles)
     return (
       <div>
-        <button onClick={dispatch(addToCart(1318923))}>Add To Cart</button>
+        <button onClick={() => {dispatch(addToCart(1318923))}}>Add To Cart</button>
       {
         styleList.styles.map((style) => (
           <Style

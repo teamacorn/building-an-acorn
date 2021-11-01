@@ -2,4 +2,4 @@
 export * from './productList/productListActions';
 export * from './currentProduct/currentProductActions';
 export * from './overview/styleList/styleActions';
-export * from './overview/addToCart/addToCartActions';
+export * from './overview/cart/cartAction';
