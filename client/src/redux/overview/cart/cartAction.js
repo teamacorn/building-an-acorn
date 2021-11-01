@@ -27,8 +27,9 @@ export const fetchCart = () => {
   return (dispatch) => {
     dispatch(fetchCartRequest()); // was not invoked
     axios.get(`/cart`)
-    .then(items => {
-      dispatch(fetchCartSuccess(items.data))
+    .then(cart => {
+      const inCart = cart.data
+      dispatch(fetchCartSuccess(inCart))
     })
     .catch(error => {
       const errorMsg = error.message

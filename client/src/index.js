@@ -6,14 +6,13 @@ import { fetchProductList } from './redux/productList/productListActions'
 
 import store from './redux/store'
 
-store.dispatch(function getProducts (dispatch, getState) {
-  const state = getState();
+// TODO: find a place to store the thunk
+store.dispatch((dispatch) => {
   dispatch(fetchProductList())
 })
 
 ReactDOM.render(
   <App />,
   document.getElementById("app"),
-  // need to do axios call to get the first batch of data
   // () => { fetchProductList()(store.dispatch); }
 );
