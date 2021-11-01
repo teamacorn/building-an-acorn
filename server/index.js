@@ -31,17 +31,20 @@ app.use('/products', productRouters);
 app.use('/cart', cartRouters);
 
 
-app.get('/reviews/', (req, res) => {
+
+
+app.get('/reviews/:pro', (req, res) => {
   axios.get(`${url}/reviews/`, {
     headers: {
       'Authorization':
       API_KEY
     },
     params: {
-      page: req.query.page,
-      count: req.query.count,
-      sort: req.query.sort,
-      product_id: req.query.product_id
+      page: req.body.page,
+      count: req.body.count,
+      sort: req.body.sort,
+      product_id: req.body.product_id
+      // ^ REQ BODY IS EMPTY - This works, but doesn't look right
   }
 })
   .then(reviews => {
@@ -62,60 +65,9 @@ app.get('/reviews/meta/:product_id', (req, res) => {
   })
   .catch(error => {
     console.log(error);
-    res.status(400).send()
+    res.status(400).send
   })
 })
-
-app.post('/reviews', (req, res) => {
-  axios.post(`${url}/reviews/`, {
-    headers: {
-      'Authorization': API_KEY
-    },
-    params: {
-      product_id: req.body.product_id,
-      rating: req.body.rating,
-      summary: req.body.summary || '',
-      body: req.body.body || '',
-      recommend: req.body.recommend,
-      name: req.body.name || '',
-      email: req.body.email || '',
-      photos: req.body.photos,
-      characteristics: req.body.characteristics
-    }
-  })
-    .then((response) => {
-      console.log(response);
-      res.status(201).send();
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(400).send(error);
-    });
-});
-
-app.put('/reviews/:review_id/helpful', (req, res) => {
-  axios({...config, method: 'PUT', url: `${url}/reviews/${req.params.review_id}/helpful`})
-    .then(response => {
-      res.status(204).send();
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(400).send();
-    })
-});
-
-
-app.put('/reviews/:review_id/report', (req, res) => {
-  axios({...config, method: 'PUT', url: `${url}/reviews/${req.params.review_id}/report`})
-    .then(response => {
-      res.status(204).send();
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(400).send();
-    })
-});
-
 
 //------------------------------------------------------------
 
