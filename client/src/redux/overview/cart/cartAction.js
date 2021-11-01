@@ -28,7 +28,6 @@ export const fetchCart = () => {
     dispatch(fetchCartRequest()); // was not invoked
     axios.get(`/cart`)
     .then(items => {
-      console.log(items.data)
       dispatch(fetchCartSuccess(items.data))
     })
     .catch(error => {
@@ -39,7 +38,6 @@ export const fetchCart = () => {
 }
 
 export const addToCart = (skuId) => {
-  console.log('invoked')
   return (dispatch) => {
     axios.post(`/cart`, {sku_id: skuId})
     .then(items => {

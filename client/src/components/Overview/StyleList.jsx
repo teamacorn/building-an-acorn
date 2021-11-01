@@ -12,7 +12,6 @@ const StyleList = () => {
   } else if (styleList.error) {
     return <div>{styleList.error}</div>
   } else {
-    console.log(styleList.styles)
     return (
       <div>
         <button onClick={() => {dispatch(addToCart(1318923))}}>Add To Cart</button>

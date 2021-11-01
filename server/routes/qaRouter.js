@@ -56,7 +56,6 @@ router.post('/questions', (req, res) => {
     email: req.body.email || '',
     product_id: parseInt(req.body.product_id)
   }
-  console.log(params);
   axios.post(url, params, config)
     .then(response => {
       res.status(201).send();
@@ -75,7 +74,7 @@ router.post('/questions/:question_id/answers', (req, res) => {
     body: req.body.body || '',
     name: req.body.name || '',
     email: req.body.email || '',
-    photos: req.body.photos || [] 
+    photos: req.body.photos || []
   }
   axios.post(`${url}/${req.params.question_id}/answers`, params, config)
     .then(response => {

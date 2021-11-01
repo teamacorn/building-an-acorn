@@ -2,7 +2,7 @@ import React from 'react';
 
 const Style = ({style, id}) => {
   // const handleClick = (event) => {
-  //   console.log(event.target.id)
+
   // }
   return (
   <div className='circular'>

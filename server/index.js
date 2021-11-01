@@ -32,17 +32,6 @@ app.use('/cart', cartRouters);
 
 
 
-// app.get('/reviews/:product_id', (req, res) => {
-//   axios.get(`${url}/reviews?product_id=${req.params.product_id}`, config)
-//   .then(reviews => {
-//     console.log(reviews)
-//     res.status(200).send(reviews.data)
-//   })
-//   .catch(error => {
-//     console.error(error);
-//     res.status(400).send()
-//   })
-// })
 
 app.get('/reviews/:pro', (req, res) => {
   axios.get(`${url}/reviews/`, {
