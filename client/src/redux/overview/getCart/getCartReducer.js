@@ -1,28 +1,28 @@
-import { FETCH_CART_REQUEST } from './cartType';
-import { FETCH_CART_SUCCESS } from './cartType';
-import { FETCH_CART_FAILURE } from './cartType';
+import { GET_CART_REQUEST } from './getCartTypes';
+import { GET_CART_SUCCESS } from './getCartTypes';
+import { GET_CART_FAILURE } from './getCartTypes';
 
 const initialState = {
   loading: false,
-  cart : [],
+  cart: [],
   error: ''
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_CART_REQUEST:
+    case GET_CART_REQUEST:
       return {
         ...state,
         loading: true
       }
-    case FETCH_CART_SUCCESS:
+    case GET_CART_SUCCESS:
       return {
         ...state,
         loading: false,
         cart: action.payload,
         error: ''
       }
-    case FETCH_CART_FAILURE:
+    case GET_CART_FAILURE:
       return {
         ...state,
         loading: false,

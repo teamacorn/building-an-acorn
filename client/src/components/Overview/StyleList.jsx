@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import Style from './Style.jsx';
+import { addToCart } from '../../redux';
 
 const StyleList = () => {
-  const styleList = useSelector(state => state.styleList)
+  const styleList = useSelector(state => state.styleList);
+  const dispatch = useDispatch();
 
   if (styleList.loading) {
     return (<h2>Loading</h2>)
@@ -13,6 +15,7 @@ const StyleList = () => {
     console.log(styleList.styles)
     return (
       <div>
+        <button onClick={dispatch(addToCart(1318923))}>Add To Cart</button>
       {
         styleList.styles.map((style) => (
           <Style
