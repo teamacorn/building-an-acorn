@@ -29,7 +29,6 @@ export const fetchCart = () => {
     axios.get(`/cart`)
     .then(cart => {
       const inCart = cart.data
-      console.log(inCart)
       dispatch(fetchCartSuccess(inCart))
     })
     .catch(error => {

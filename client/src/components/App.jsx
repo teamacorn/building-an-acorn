@@ -9,7 +9,6 @@ function App (){
   return (
     <Provider store={store}>
       <div className="App">
-        {console.log(store.getState())}
         <StyleList />
       </div>
     </Provider>

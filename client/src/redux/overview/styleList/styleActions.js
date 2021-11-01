@@ -24,7 +24,6 @@ export const fetchStyleListFailure = error => {
 }
 
 export const fetchStyleList = (id) => {
-  console.log(id)
   return (dispatch) => {
     dispatch(fetchStyleListRequest)
     axios.get(`/products/${id}/styles`)
