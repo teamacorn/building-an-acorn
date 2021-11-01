@@ -5,11 +5,11 @@ import Style from './Style.jsx';
 const StyleList = () => {
   const styleList = useSelector(state => state.styleList)
 
-  if (styleList.loading) {
-    return (<h2>Loading</h2>)
-  } else if (styleList.error) {
-    return <div>{styleList.error}</div>
-  } else {
+  // if (styleList.loading) {
+  //   return (<h2>Loading</h2>)
+  // } else if (styleList.error) {
+  //   return <div>{styleList.error}</div>
+  // } else {
     return (
       <div>
       {
@@ -23,7 +23,6 @@ const StyleList = () => {
       }
       </div>
     )
-  }
   }
 
 export default StyleList;
