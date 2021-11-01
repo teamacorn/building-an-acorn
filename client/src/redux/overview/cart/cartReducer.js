@@ -1,32 +1,32 @@
-import { FETCH_CURRENT_PRODUCT_REQUEST }from './currentProductTypes'
-import { FETCH_CURRENT_PRODUCT_SUCCESS } from './currentProductTypes'
-import { FETCH_CURRENT_PRODUCT_FAILURE } from './currentProductTypes'
+import { FETCH_CART_REQUEST } from './cartType';
+import { FETCH_CART_SUCCESS } from './cartType';
+import { FETCH_CART_FAILURE } from './cartType';
 
 const initialState = {
   loading: false,
-  product: {},
+  cart : [],
   error: ''
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_CURRENT_PRODUCT_REQUEST:
+    case FETCH_CART_REQUEST:
       return {
         ...state,
         loading: true
       }
-    case FETCH_CURRENT_PRODUCT_SUCCESS:
+    case FETCH_CART_SUCCESS:
       return {
         ...state,
         loading: false,
-        product: action.payload,
+        cart: action.payload,
         error: ''
       }
-    case FETCH_CURRENT_PRODUCT_FAILURE:
+    case FETCH_CART_FAILURE:
       return {
         ...state,
         loading: false,
-        product: {},
+        cart: [],
         error: action.payload
       }
     default: return state

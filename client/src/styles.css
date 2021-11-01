@@ -1,1 +1,11 @@
+.resize {
+  width: 100px;
+  height: auto;
+}
 
+.circular{
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  display: block;
+ }

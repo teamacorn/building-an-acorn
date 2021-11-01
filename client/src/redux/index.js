@@ -1,4 +1,5 @@
 // export actions to be used in the components
-
 export * from './productList/productListActions';
-export { updateCurrentProduct } from './currentProduct/currentProductActions';
+export * from './currentProduct/currentProductActions';
+export * from './overview/styleList/styleActions'
+export * from './overview/cart/cartAction';

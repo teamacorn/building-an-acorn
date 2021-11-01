@@ -1,32 +1,32 @@
-import { FETCH_CURRENT_PRODUCT_REQUEST }from './currentProductTypes'
-import { FETCH_CURRENT_PRODUCT_SUCCESS } from './currentProductTypes'
-import { FETCH_CURRENT_PRODUCT_FAILURE } from './currentProductTypes'
+import { FETCH_STYLE_LIST_REQUEST } from './styleTypes';
+import { FETCH_STYLE_LIST_SUCCESS } from './styleTypes';
+import { FETCH_STYLE_LIST_FAILURE } from './styleTypes';
 
 const initialState = {
   loading: false,
-  product: {},
+  styles : [],
   error: ''
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_CURRENT_PRODUCT_REQUEST:
+    case FETCH_STYLE_LIST_REQUEST:
       return {
         ...state,
         loading: true
       }
-    case FETCH_CURRENT_PRODUCT_SUCCESS:
+    case FETCH_STYLE_LIST_SUCCESS:
       return {
         ...state,
         loading: false,
-        product: action.payload,
+        styles: action.payload,
         error: ''
       }
-    case FETCH_CURRENT_PRODUCT_FAILURE:
+    case FETCH_STYLE_LIST_FAILURE:
       return {
         ...state,
         loading: false,
-        product: {},
+        styles: [],
         error: action.payload
       }
     default: return state
