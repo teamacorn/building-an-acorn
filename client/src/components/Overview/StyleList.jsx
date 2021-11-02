@@ -27,7 +27,7 @@ const StyleList = () => {
         <h1>{currentProduct.product.name}</h1>
 
         {
-          styleList.styles.map(style => {
+          styleList.styles.map((style, index) => {
             if(style.style_id === currentStyleId) {
               if (style.sale_price === null) {
                 return (
@@ -46,7 +46,17 @@ const StyleList = () => {
             }
           })
         }
-        <button onClick={() => {dispatch(addToCart(1318923))}}>Add To Cart</button>
+        {
+          styleList.styles.map(style => {
+            if (style.style_id === currentStyleId) {
+              return (
+                <div key={style.style_id}>
+                  <p>Style > {style.name}</p>
+                </div>
+              )
+            }
+          })
+        }
       {
         styleList.styles.map((style) => (
           <Style
@@ -55,8 +65,10 @@ const StyleList = () => {
             key={style.style_id}
             handleClick = {handleClick}
           />
-    ))
+        ))
       }
+      <SelectSize />
+      {/* <button onClick={() => {dispatch(addToCart(1318923))}}>Add To Cart</button> */}
       </div>
     )
   }

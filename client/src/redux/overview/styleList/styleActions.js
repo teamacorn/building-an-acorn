@@ -31,6 +31,7 @@ export const fetchStyleList = (id) => {
     .then(listOfStyles => {
       const styleList = listOfStyles.data.results
       const styleId = styleList[0].style_id
+      console.log(styleList)
       dispatch(fetchStyleListSuccess(styleList))
       dispatch(updateCurrentStyle(styleId))
     })
