@@ -5,7 +5,7 @@ import { FETCH_QA_FAILURE } from "./qaTypes";
 // initial state
 const initialState = {
   loading: false,
-  qaList: [],
+  qa: [],
   error: ''
 }
 
@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        qaList: action.payload,
+        qa: action.payload,
         error: ''
       }
     case FETCH_QA_FAILURE:
@@ -34,4 +34,6 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
