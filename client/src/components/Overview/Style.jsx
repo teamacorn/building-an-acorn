@@ -1,12 +1,9 @@
 import React from 'react';
 
-const Style = ({style, id}) => {
-  // const handleClick = (event) => {
-
-  // }
+const Style = ({style, id, handleClick}) => {
   return (
-  <div className='circular'>
-    <img id={id} className='resize' src={style.photos[0].thumbnail_url}/>
+  <div >
+    <img id={id} className='circular--portrait' src={style.photos[0].thumbnail_url} onClick={handleClick}/>
   </div>
   )
 }

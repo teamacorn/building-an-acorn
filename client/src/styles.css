@@ -1,11 +1,11 @@
-.resize {
-  width: 100px;
-  height: auto;
+.circular--portrait {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.circular{
-  width: 200px;
-  height: 200px;
-  background-size: cover;
-  display: block;
- }
+/* .circular--portrait img {
+  width: 100%;
+  height: auto;
+} */

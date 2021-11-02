@@ -3,3 +3,4 @@ export * from './productList/productListActions';
 export * from './currentProduct/currentProductActions';
 export * from './overview/styleList/styleActions';
 export * from './overview/cart/cartAction';
+export * from './overview/currentStyle/currentStyleActions'
