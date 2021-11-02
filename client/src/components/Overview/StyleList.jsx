@@ -12,7 +12,7 @@ const StyleList = () => {
   const dispatch = useDispatch();
 
   const handleClick = (event) => {
-    dispatch(updateCurrentStyle(event.target.id))
+    dispatch(updateCurrentStyle(parseInt(event.target.id)))
   }
 
   if (styleList.loading || currentProduct.loading) {
@@ -25,18 +25,21 @@ const StyleList = () => {
         <p>reviews</p>
         <h3>{currentProduct.product.category}</h3>
         <h1>{currentProduct.product.name}</h1>
+
         {
           styleList.styles.map(style => {
             if(style.style_id === currentStyleId) {
               if (style.sale_price === null) {
                 return (
-                  <p key={style.style_id} className='price'>${style.original_price}</p>
+                  <div key={style.style_id}>
+                    <p className='price'>${style.original_price}</p>
+                  </div>
                 )
               } else {
                 return (
-                  <div>
-                  <p key={style.style_id} className='original-price, price'>${style.original_price}</p>
-                  <p key={style.style_id} className='sale-price, price'>${style.sale_price}</p>
+                  <div key={style.style_id}>
+                    <p className='original-price, price'>${style.original_price}</p>
+                    <p className='sale-price, price'>${style.sale_price}</p>
                   </div>
                 )
               }

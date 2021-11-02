@@ -1,7 +1,7 @@
 import { UPDATE_CURRENT_STYLE } from './currentStyleTypes';
 
 const initialState = {
-  currentStyleId: null
+  currentStyleId: NaN
 }
 
 const currentStyleIdReducer = (state = initialState, action) => {
