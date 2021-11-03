@@ -33,6 +33,11 @@
     "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+>>>>>>> style-list-component
     "@mui/material": "^5.0.6",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.3",

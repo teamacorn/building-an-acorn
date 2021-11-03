@@ -2,6 +2,7 @@ import axios from 'axios';
 import { FETCH_STYLE_LIST_REQUEST } from './styleTypes';
 import { FETCH_STYLE_LIST_SUCCESS } from './styleTypes';
 import { FETCH_STYLE_LIST_FAILURE } from './styleTypes';
+import { updateCurrentStyle } from '../currentStyle/currentStyleActions'
 
 export const fetchStyleListRequest = () => {
   return {
@@ -29,7 +30,10 @@ export const fetchStyleList = (id) => {
     axios.get(`/products/${id}/styles`)
     .then(listOfStyles => {
       const styleList = listOfStyles.data.results
+      const styleId = styleList[0].style_id
+      console.log(styleList)
       dispatch(fetchStyleListSuccess(styleList))
+      dispatch(updateCurrentStyle(styleId))
     })
     .catch(error => {
       const errorMsg = error.message

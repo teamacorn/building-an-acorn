@@ -4,13 +4,15 @@ import currentProductReducer from './currentProduct/currentProductReducer';
 import styleReducer from './overview/styleList/styleReducer';
 import cartReducer from './overview/cart/cartReducer';
 import qaReducer from './qa/qaReducer';
+import currentStyleIdReducer from './overview/currentStyle/currentStyleReducer';
 
 const rootReducer = combineReducers({
   productList: productListReducer ,
   currentProduct: currentProductReducer,
   styleList: styleReducer,
   cart: cartReducer,
-  qaList: qaReducer
+  qaList: qaReducer,
+  styleId: currentStyleIdReducer
 });
 
 export default rootReducer;
