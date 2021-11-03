@@ -51,7 +51,7 @@ const StyleList = () => {
             if (style.style_id === currentStyleId) {
               return (
                 <div key={style.style_id}>
-                  <p>Style > {style.name}</p>
+                  <p>Style {'>'} {style.name}</p>
                 </div>
               )
             }
