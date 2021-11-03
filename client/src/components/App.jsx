@@ -9,8 +9,8 @@ function App (){
   return (
     <Provider store={store}>
       <div className="App">
-        {/* <StyleList /> */}
-        {/* <Test /> */}
+        {/* <StyleList />
+        <Test /> */}
       </div>
     </Provider>
   );

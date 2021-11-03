@@ -43,7 +43,7 @@ export const fetchQA = (productId) => {
 // question {"body": "literally, whats been on your mind", "name": "alex", "email": "test@test.com", "product_id": 38323}
 export const addQuestionToProduct = (question) => {
   return dispatch => {
-    axious.post('/qa/questions', question)
+    axios.post('/qa/questions', question)
       .then(res => {
         console.log(`Question to product #${question.product_id} is posted`);
         // TODO: should I fetch qaList again?
