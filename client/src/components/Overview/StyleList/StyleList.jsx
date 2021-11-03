@@ -1,9 +1,9 @@
 import React from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import Style from './Style.jsx';
-import { addToCart } from '../../redux';
+import { addToCart } from '../../../redux';
 import SelectSize from './SelectSize.jsx';
-import { updateCurrentStyle } from '../../redux'
+import { updateCurrentStyle } from '../../../redux';
 
 const StyleList = () => {
   const styleList = useSelector(state => state.styleList);
@@ -31,15 +31,15 @@ const StyleList = () => {
             if(style.style_id === currentStyleId) {
               if (style.sale_price === null) {
                 return (
-                  <div key={style.style_id}>
+                  <div key={style.style_id} className='prices'>
                     <p className='price'>${style.original_price}</p>
                   </div>
                 )
               } else {
                 return (
-                  <div key={style.style_id}>
-                    <p className='original-price, price'>${style.original_price}</p>
-                    <p className='sale-price, price'>${style.sale_price}</p>
+                  <div key={style.style_id} className='prices'>
+                    <p className='sale-price price'>${style.sale_price}</p>
+                    <p className='original-price price'>${style.original_price}</p>
                   </div>
                 )
               }

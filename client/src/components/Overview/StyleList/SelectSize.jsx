@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
-import { addToCart } from '../../redux';
-import { updateCurrentStyle } from '../../redux'
+import { addToCart } from '../../../redux';
+import { updateCurrentStyle } from '../../../redux';
 
 const SelectSize = () => {
   const styleList = useSelector(state => state.styleList);
