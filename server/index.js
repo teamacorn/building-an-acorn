@@ -45,7 +45,6 @@ app.get('/reviews/:product_id', (req, res) => {
   }
 })
   .then(reviews => {
-    console.log(reviews)
     res.status(200).send(reviews.data)
   })
   .catch(error => {
@@ -57,7 +56,6 @@ app.get('/reviews/:product_id', (req, res) => {
 app.get('/reviews/meta/:product_id', (req, res) => {
   axios.get(`${url}/reviews/meta/?product_id=${req.params.product_id}`, config)
   .then(reviewMetaData => {
-    console.log(reviewMetaData);
     res.status(200).send(reviewMetaData.data);
   })
   .catch(error => {
