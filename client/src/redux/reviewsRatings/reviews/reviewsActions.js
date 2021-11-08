@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { FETCH_REVIEWS_SUCCESS } from './ReviewsTypes';
-import { FETCH_REVIEWS_FAILURE } from './ReviewsTypes';
-import { FETCH_REVIEWS_REQUEST } from './ReviewsTypes';
+import { FETCH_REVIEWS_SUCCESS } from './reviewsTypes';
+import { FETCH_REVIEWS_FAILURE } from './reviewsTypes';
+import { FETCH_REVIEWS_REQUEST } from './reviewsTypes';
 
 const fetchReviewsRequest = () => {
   return {
