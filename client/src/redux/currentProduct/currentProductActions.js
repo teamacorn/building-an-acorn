@@ -4,6 +4,8 @@ import { FETCH_CURRENT_PRODUCT_SUCCESS } from './currentProductTypes'
 import { FETCH_CURRENT_PRODUCT_FAILURE } from './currentProductTypes'
 import { fetchStyleList } from '../overview/styleList/styleActions'
 import { fetchQA } from '../qa/qaActions';
+import { fetchReviews } from '../reviewsRatings/reviews/reviewsActions';
+import { fetchRatings } from '../reviewsRatings/ratings/ratingsActions'
 
 export const fetchCurrentProductRequest = () => {
   return {
@@ -35,6 +37,8 @@ export const fetchCurrentProduct = (id) => {
       dispatch(fetchStyleList(id))
       //dispatch reviewList, ReviewMeta, QA List
       dispatch(fetchQA(id));
+      dispatch(fetchReviews(id));
+      dispatch(fetchRatings(id));
     })
     .catch(error => {
       const errorMsg = error.message
