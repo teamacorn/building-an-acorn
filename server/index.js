@@ -31,8 +31,8 @@ app.use('/products', productRouters);
 app.use('/cart', cartRouters);
 
 
-app.get('/reviews/', (req, res) => {
-  axios.get(`${url}/reviews/`, {
+app.get('/reviews/:product_id', (req, res) => {
+  axios.get(`${url}/reviews/?product_id=${req.params.product_id}`, {
     headers: {
       'Authorization':
       API_KEY
