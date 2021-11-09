@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import Stack from '@mui/material/Stack';
 import store from '../redux/store.js';
 import Overview from './Overview';
+import QA from './QA/QA.jsx';
 
 function App (){
   return (
@@ -11,6 +12,7 @@ function App (){
       <div className="App">
         <Stack spacing={2} className='stack-style'>
           <Overview />
+          <QA/>
         </Stack>
       </div>
     </Provider>
