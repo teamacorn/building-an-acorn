@@ -62,7 +62,7 @@ const StyleList = () => {
         <Grid container spacing={1} className='style-container'>
         {
           styleList.styles.map((style) => (
-            <Grid item md={3}>
+            <Grid key={style.style_id} item md={3}>
             <Style
               style={style}
               id={style.style_id}
