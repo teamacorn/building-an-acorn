@@ -9,7 +9,6 @@ function App (){
   return (
     <Provider store={store}>
       <div className="App">
-        {/* <Overview /> */}
         <Stack spacing={2} className='stack-style'>
           <Overview />
         </Stack>
