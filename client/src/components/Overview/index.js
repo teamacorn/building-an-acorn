@@ -6,8 +6,6 @@ import Grid from '@mui/material/Grid';
 const Overview = () => {
   return (
     <div>
-    {/* <MyGallery />
-    <StyleList /> */}
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <MyGallery />
