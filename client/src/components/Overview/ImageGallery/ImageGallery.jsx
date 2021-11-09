@@ -21,9 +21,6 @@ const MyGallery = () => {
   const styleList = useSelector(state => state.styleList);
   const currentStyleId = useSelector(state => state.styleId.currentStyleId);
   const [currentImages, setCurrentImages] = useState([])
-  console.log(styleList.styles);
-  console.log(currentStyleId);
-  console.log(currentImages);
 
     if (styleList.loading || currentStyleId.loading) {
       return (<h2>Loading</h2>)
@@ -35,7 +32,6 @@ const MyGallery = () => {
           {
             styleList.styles.map(style => {
               if (style.style_id === currentStyleId) {
-                console.log(style.photos)
                 let images = style.photos.map(obj => {
                   return {
                     thumbnail: obj['thumbnail_url'],
