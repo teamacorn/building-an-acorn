@@ -4,6 +4,7 @@ import Style from './Style.jsx';
 import { addToCart } from '../../../redux';
 import SelectSize from './SelectSize.jsx';
 import { updateCurrentStyle } from '../../../redux';
+import Grid from '@mui/material/Grid';
 
 const StyleList = () => {
   const styleList = useSelector(state => state.styleList);
@@ -21,7 +22,7 @@ const StyleList = () => {
     return <div>{styleList.error}</div>
   } else {
     return (
-      <div>
+      <div className='styleList'>
         <p>reviews</p>
         <h3>{currentProduct.product.category}</h3>
         <h1>{currentProduct.product.name}</h1>
@@ -58,14 +59,21 @@ const StyleList = () => {
           })
         }
       {
-        styleList.styles.map((style) => (
-          <Style
-            style={style}
-            id={style.style_id}
-            key={style.style_id}
-            handleClick = {handleClick}
-          />
-        ))
+        <Grid container spacing={1} className='style-container'>
+        {
+          styleList.styles.map((style) => (
+            <Grid item md={3}>
+            <Style
+              style={style}
+              id={style.style_id}
+              key={style.style_id}
+              handleClick = {handleClick}
+            />
+            </Grid>
+          ))
+        }
+        </Grid>
+
       }
       <SelectSize />
       {/* <button onClick={() => {dispatch(addToCart(1318923))}}>Add To Cart</button> */}
