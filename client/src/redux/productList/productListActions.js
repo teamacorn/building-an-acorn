@@ -31,8 +31,8 @@ export const fetchProductList = () => {
     .then(listOfProducts => {
       const products = listOfProducts.data
       let product_id = listOfProducts.data[0].id
-      dispatch(fetchProductListSuccess(products))
-      dispatch(fetchCurrentProduct(product_id))
+      dispatch(fetchProductListSuccess(products));
+      dispatch(fetchCurrentProduct(product_id));
     })
     .catch(error => {
       const errorMsg = error.message
