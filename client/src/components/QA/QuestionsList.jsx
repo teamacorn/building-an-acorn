@@ -12,14 +12,15 @@ const QuestionList = ({qaList, numOfQuestions}) => {
   return (
     <div id='qa-question-list'>
     {
-      qaList.qa.slice(0, numOfQuestions).map(result => {
+      qaList.slice(0, numOfQuestions).map(result => {
         return (
           <Accordion expanded={true} className='qa-list-accordion' style={{ boxShadow: "none" }} key={result.question_id}>
-            <AccordionSummary>Q: 
+            <AccordionSummary><span>Q:</span>&nbsp;&nbsp;
             {
-              (result.question_body[result.question_body.length - 1] === '?')?
-              (' ' + result.question_body):
-              (' ' + result.question_body + '?')
+              // (result.question_body[result.question_body.length - 1] === '?')?
+              // (' ' + result.question_body):
+              // (' ' + result.question_body + '?')
+              <span dangerouslySetInnerHTML={{__html: result.question_body}}></span>
 
             }
             </AccordionSummary>

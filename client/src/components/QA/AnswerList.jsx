@@ -1,31 +1,69 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
-const AnswerList = ({answers, numOfAnswers}) => {
+
+const AnswerList = ({answers}) => {
   // answers is an object
-  // TODO: add button to show more answers
+  const [numOfAnswers, setNumOfAnswers] = useState(2);
+  const [moreAnswerBtnText, setMoreAnswerBtnText] = useState('LOAD MORE ANSWER');
+
+  var onClickHandler = () => {
+    if (numOfAnswers !== 2) {
+      setNumOfAnswers(2);
+    } else {
+      setNumOfAnswers(Object.keys(answers).length);
+    }
+    if (moreAnswerBtnText !== 'LOAD MORE ANSWER') {
+      setMoreAnswerBtnText('LOAD MORE ANSWER');
+    } else {
+      setMoreAnswerBtnText('SHOW LESS ANSWER');
+    }
+  };
+
   return (
-    Object.keys(answers).slice(0, numOfAnswers).map((key, index) => {
-      return (
-        (index === 0)?
-        (
-          <AccordionDetails key={key}>
-            A: {answers[key].body} <br/>
-            &emsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} | 
-            Helpful? <button>Yes</button> ({answers[key].helpfulness}) | 
-            <button>Report</button>
-          </AccordionDetails>
-        ):
-        (
-          <AccordionDetails className='answer-list-tabbed' key={key}>
-            &emsp; {answers[key].body} <br/>
-            &emsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} | 
-            Helpful? <button>Yes</button> ({answers[key].helpfulness}) | 
-            <button>Report</button>
-          </AccordionDetails>
-        )
-      )
-    })
+    <>
+      {
+        Object.keys(answers).slice(0, numOfAnswers).map((key, index) => {
+          return (
+            ((index === 0)?
+            (
+                <AccordionDetails key={key}>
+                  <div className='accordion-question-detail'>
+                    <span className="answer-prefix">A: </span>&nbsp;&nbsp;
+                    {answers[key].body} <br/><br/>
+                    <p>
+                      &emsp;&nbsp;&nbsp; &nbsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} &ensp;| &ensp;
+                      Helpful? <a className='report-helpful-btn'>Yes</a> ({answers[key].helpfulness}) &ensp;| &ensp;
+                      <a className="report-helpful-btn">Report</a>
+                    </p>
+                  </div>
+                </AccordionDetails>
+            ):
+            (
+                <AccordionDetails className='answer-list-tabbed' key={key}>
+                  &emsp;&nbsp;&nbsp;&nbsp;&nbsp;{answers[key].body} <br/><br/>
+                  <p>
+                  &emsp;&nbsp; &nbsp;&nbsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} &ensp;| &ensp;
+                  Helpful? <a className='report-helpful-btn'>Yes</a> ({answers[key].helpfulness}) &ensp;| &ensp;
+                  <a className="report-helpful-btn">Report</a>
+                  </p>
+                </AccordionDetails>
+            ))
+          )
+        })
+      }
+      {
+        (() => {
+          return (numOfAnswers !== answers.length)?
+          (
+            <>
+              &emsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp;<button onClick={onClickHandler}>{moreAnswerBtnText}</button>
+            </>
+          ):
+          (<></>)
+        })()
+      }
+    </>
   )
 }
 
