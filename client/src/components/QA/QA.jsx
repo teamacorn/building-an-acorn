@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { TextField } from '@mui/material';
 import QuestionList from './QuestionsList.jsx';
 
@@ -8,9 +8,26 @@ import Stack from '@mui/material/Stack';
 import {useSelector, useDispatch } from 'react-redux';
 
 const QA = () => {
-  // TODO: load more questions based on a button pressed on the QA module
   const qaList = useSelector(state => state.qaList);
+  const [numOfQuestions, setNumOfQuestions] = useState(2);
+  const [moreQuestionBtnText, setMoreQuestionBtnText] = useState('MORE ANSWERED QUESTIONS');
+  
+  var onClickHandler = (event) => {
+    if (numOfQuestions !== 2) {
+      setNumOfQuestions(2);
+    } else {
+      setNumOfQuestions(qaList.qa.length);
+    }
+    if (moreQuestionBtnText !== 'MORE ANSWERED QUESTIONS') {
+      setMoreQuestionBtnText('MORE ANSWERED QUESTIONS');
+    } else {
+      setMoreQuestionBtnText('SHOW LESS QUESTIONS');
+    }
+  };
 
+  var onChangeHandler = () => {
+    
+  };
   return (qaList.loading)?
     (<div></div>):
     (
@@ -24,10 +41,9 @@ const QA = () => {
             variant="outlined"
             size="small"/>
 
-          <QuestionList qaList={qaList}/>
-
+          <QuestionList qaList={qaList} numOfQuestions={numOfQuestions}/>
           <Stack id="qa-bottom-button" direction="row" spacing={2}>
-            <Button size="large" variant="outlined">MORE ANSWERED QUESTIONS</Button>
+            <Button id="more-question-btn" size="large" variant="outlined" onClick={onClickHandler}>{moreQuestionBtnText}</Button>
             <Button size="large" variant="outlined">ADD A QUESTION +</Button>
           </Stack>
         </div>
