@@ -5,6 +5,8 @@ import { addToCart } from '../../../redux';
 import SelectSize from './SelectSize.jsx';
 import { updateCurrentStyle } from '../../../redux';
 import Grid from '@mui/material/Grid';
+import { FacebookShareButton, PinterestShareButton, TwitterShareButton } from "react-share";
+import { FacebookIcon, PinterestIcon, TwitterIcon } from 'react-share'
 
 const StyleList = () => {
   const styleList = useSelector(state => state.styleList);
@@ -76,7 +78,28 @@ const StyleList = () => {
 
       }
       <SelectSize />
-      {/* <button onClick={() => {dispatch(addToCart(1318923))}}>Add To Cart</button> */}
+      <div className='icons'>
+       <FacebookShareButton
+        url={"https://www.facebook.com/profile.php?id=100074615387359"}
+        quote={"Checkout this awesome project!!"}
+      >
+        <FacebookIcon size={32} round className='FacebookIcon'/>
+      </FacebookShareButton>
+
+      <TwitterShareButton
+        url={"https://twitter.com/TeamAcornFEC"}
+        title={"Checkout this awesome project!!"}
+      >
+        <TwitterIcon size={32} round className='TwitterIcon'/>
+      </TwitterShareButton>
+
+      {/* <PinterestShareButton */}
+        {/* // url={"https://pin.it/19Zdh5F"}
+        // media={"https://pin.it/19Zdh5F"} */}
+      {/* > */}
+        <PinterestIcon size={32} round className='PinterestIcon'/>
+      {/* </PinterestShareButton> */}
+      </div>
       </div>
     )
   }
