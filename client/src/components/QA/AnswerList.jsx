@@ -29,9 +29,9 @@ const AnswerList = ({answers}) => {
             (
                 <AccordionDetails key={key}>
                   <div className='accordion-question-detail'>
-                    <span className="answer-prefix">A: </span>&nbsp;&nbsp;
+                    <span className='qa-header'>A: </span>&nbsp;&nbsp;
                     {answers[key].body} <br/><br/>
-                    <p>
+                    <p className='qa-small'>
                       &emsp;&nbsp;&nbsp; &nbsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} &ensp;| &ensp;
                       Helpful? <a className='report-helpful-btn'>Yes</a> ({answers[key].helpfulness}) &ensp;| &ensp;
                       <a className="report-helpful-btn">Report</a>
@@ -42,7 +42,7 @@ const AnswerList = ({answers}) => {
             (
                 <AccordionDetails className='answer-list-tabbed' key={key}>
                   &emsp;&nbsp;&nbsp;&nbsp;&nbsp;{answers[key].body} <br/><br/>
-                  <p>
+                  <p className='qa-small'>
                   &emsp;&nbsp; &nbsp;&nbsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} &ensp;| &ensp;
                   Helpful? <a className='report-helpful-btn'>Yes</a> ({answers[key].helpfulness}) &ensp;| &ensp;
                   <a className="report-helpful-btn">Report</a>
