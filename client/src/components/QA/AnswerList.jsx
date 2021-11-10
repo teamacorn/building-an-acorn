@@ -4,10 +4,19 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 
 const AnswerList = ({answers}) => {
   // answers is an object
+  // TODO: sort answers based on helpfulness
+  var sortable = [];
+  for (var a in answers) {
+    sortable.push([a, answers[a]]);
+  }
+  sortable.sort((a, b) => {
+    return parseInt(b[1].helpfulness) - parseInt(a[1].helpfulness);
+  });
+
   const [numOfAnswers, setNumOfAnswers] = useState(2);
   const [moreAnswerBtnText, setMoreAnswerBtnText] = useState('LOAD MORE ANSWER');
 
-  var onClickHandler = () => {
+  var onClickHandlerMoreAnswer = () => {
     if (numOfAnswers !== 2) {
       setNumOfAnswers(2);
     } else {
@@ -18,6 +27,12 @@ const AnswerList = ({answers}) => {
     } else {
       setMoreAnswerBtnText('SHOW LESS ANSWER');
     }
+  };
+
+  var onClickHandlerReport = (e) => {
+    e.target.textContent = 'Reported';
+    e.target.style.pointerEvents = 'none';
+    e.target.style.textDecoration = 'none';
   };
 
   return (
@@ -34,7 +49,7 @@ const AnswerList = ({answers}) => {
                     <p className='qa-small'>
                       &emsp;&nbsp;&nbsp; &nbsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} &ensp;| &ensp;
                       Helpful? <a className='report-helpful-btn'>Yes</a> ({answers[key].helpfulness}) &ensp;| &ensp;
-                      <a className="report-helpful-btn">Report</a>
+                      <a onClick={onClickHandlerReport} className="report-helpful-btn report-btn">Report</a>
                     </p>
                   </div>
                 </AccordionDetails>
@@ -45,7 +60,7 @@ const AnswerList = ({answers}) => {
                   <p className='qa-small'>
                   &emsp;&nbsp; &nbsp;&nbsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} &ensp;| &ensp;
                   Helpful? <a className='report-helpful-btn'>Yes</a> ({answers[key].helpfulness}) &ensp;| &ensp;
-                  <a className="report-helpful-btn">Report</a>
+                  <a onClick={onClickHandlerReport} className="report-helpful-btn report-btn">Report</a>
                   </p>
                 </AccordionDetails>
             ))
@@ -57,7 +72,7 @@ const AnswerList = ({answers}) => {
           return (numOfAnswers !== answers.length)?
           (
             <>
-              &emsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp;<button onClick={onClickHandler}>{moreAnswerBtnText}</button>
+              &emsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp;<button onClick={onClickHandlerMoreAnswer}>{moreAnswerBtnText}</button>
             </>
           ):
           (<></>)
