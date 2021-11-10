@@ -17,9 +17,9 @@
   height: 50px;
 }
 
-.image-gallery {
-  background-color: lightgray;
-}
+/* .image-gallery {
+
+} */
 
 .image-gallery-slide img {
   width: 100%;
@@ -53,4 +53,16 @@ button.image-gallery-left-nav:focus, button.image-gallery-right-nav:focus, butto
 }
 .styleList {
   padding-left: 10%;
+}
+
+.icons {
+  padding-top: 10%;
+}
+
+.FacebookIcon {
+  padding-right: 2%;
+}
+
+.TwitterIcon {
+  padding-left: 2%;
 }
