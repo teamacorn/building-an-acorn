@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { TextField } from '@mui/material';
 import QuestionList from './QuestionsList.jsx';
-
+import AddQuestionForm from './AddQuestionForm.jsx';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
@@ -19,7 +19,7 @@ const QA = () => {
     setFilteredQAList(filterQuestionByQuery(queryString)); // this resolves empty filteredQAList 
   }, [qaList.qa]);
 
-    useEffect(() => {
+  useEffect(() => {
     setFilteredQAList(filterQuestionByQuery(queryString)); // this resolves empty filteredQAList 
   }, [queryString]);
 
@@ -79,7 +79,7 @@ const QA = () => {
           <QuestionList qaList={filteredQAList} numOfQuestions={numOfQuestions}/>
           <Stack id="qa-bottom-button" direction="row" spacing={2}>
             <Button id="more-question-btn" size="large" variant="outlined" onClick={onClickHandlerMoreQuestion}>{moreQuestionBtnText}</Button>
-            <Button size="large" variant="outlined">ADD A QUESTION +</Button>
+            <AddQuestionForm/>
           </Stack>
         </div>
       </div>
