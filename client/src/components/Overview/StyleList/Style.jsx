@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 const Style = ({style, id, handleClick}) => {
 
   return (
-  <div>
+  <div className='roundImageContainer'>
         <img id={id} className='circular--portrait' src={style.photos[0].thumbnail_url} onClick={handleClick}/>
 
   </div>

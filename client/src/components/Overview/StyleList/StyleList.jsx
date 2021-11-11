@@ -7,25 +7,27 @@ import { updateCurrentStyle } from '../../../redux';
 import Grid from '@mui/material/Grid';
 import { FacebookShareButton, PinterestShareButton, TwitterShareButton } from "react-share";
 import { FacebookIcon, PinterestIcon, TwitterIcon } from 'react-share'
+import Rating from '@mui/material/Rating';
 
 const StyleList = () => {
   const styleList = useSelector(state => state.styleList);
   const currentProduct = useSelector(state => state.currentProduct)
   const currentStyleId = useSelector(state => state.styleId.currentStyleId)
+  const currentProductRating = useSelector(state => state.ratings)
   const dispatch = useDispatch();
 
   const handleClick = (event) => {
     dispatch(updateCurrentStyle(parseInt(event.target.id)))
   }
 
-  if (styleList.loading || currentProduct.loading) {
-    return (<h2>Loading</h2>)
+  if (styleList.loading || currentProduct.loading || styleList.styles.length === 0 || isNaN(currentStyleId) || currentProductRating.loading) {
+    return (<h2></h2>)
   } else if (styleList.error) {
     return <div>{styleList.error}</div>
   } else {
     return (
       <div className='styleList'>
-        <p>reviews</p>
+        <Rating name="quarter-rating-read" value={currentProductRating.averageStarRating} precision={0.25} readOnly />
         <h3>{currentProduct.product.category}</h3>
         <h1>{currentProduct.product.name}</h1>
 
@@ -80,25 +82,26 @@ const StyleList = () => {
       <SelectSize />
       <div className='icons'>
        <FacebookShareButton
-        url={"https://www.facebook.com/profile.php?id=100074615387359"}
-        quote={"Checkout this awesome project!!"}
+        url={styleList.styles.filter(style => (parseInt(style.style_id) === currentStyleId))[0].photos[0].thumbnail_url}
+        quote={"Checkout this awesome product!!"}
       >
         <FacebookIcon size={32} round className='FacebookIcon'/>
       </FacebookShareButton>
 
       <TwitterShareButton
-        url={"https://twitter.com/TeamAcornFEC"}
+        // url={styleList.styles.filter(style => (parseInt(style.style_id) === currentStyleId))[0].photos[0].thumbnail_url}
+        url={'https://twitter.com/TeamAcornFEC'}
         title={"Checkout this awesome project!!"}
       >
         <TwitterIcon size={32} round className='TwitterIcon'/>
       </TwitterShareButton>
 
-      {/* <PinterestShareButton */}
-        {/* // url={"https://pin.it/19Zdh5F"}
-        // media={"https://pin.it/19Zdh5F"} */}
-      {/* > */}
+      <PinterestShareButton
+        url={styleList.styles.filter(style => (parseInt(style.style_id) === currentStyleId))[0].photos[0].thumbnail_url}
+        media={styleList.styles.filter(style => (parseInt(style.style_id) === currentStyleId))[0].photos[0].thumbnail_url}
+      >
         <PinterestIcon size={32} round className='PinterestIcon'/>
-      {/* </PinterestShareButton> */}
+      </PinterestShareButton>
       </div>
       </div>
     )
