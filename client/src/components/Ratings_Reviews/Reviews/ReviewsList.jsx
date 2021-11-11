@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { markReviewHelpful } from '../../../redux';
 import { reportReview } from '../../../redux';
 // ^ try combining the two imports above
-import Reviews from './ReviewsList.jsx';
+  // import Reviews from './ReviewsList.jsx';
+import Grid from '@mui/material/Grid';
+
 
 const reviewStarRating = () => {
   Number((Math.round(avg * 4) / 4).toFixed(2));
@@ -17,7 +19,20 @@ const ImageMap = (photos) => {
     ))
 };
 
-
+{/* <Grid container spacing={2}>
+  <Grid item xs={8}>
+    <Item>xs=8</Item>
+  </Grid>
+  <Grid item xs={4}>
+    <Item>xs=4</Item>
+  </Grid>
+  <Grid item xs={4}>
+    <Item>xs=4</Item>
+  </Grid>
+  <Grid item xs={8}>
+    <Item>xs=8</Item>
+  </Grid>
+</Grid> */}
 
 const ReviewsList = () => {
 
