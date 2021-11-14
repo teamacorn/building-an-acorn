@@ -137,3 +137,12 @@ a:hover {
 .TwitterIcon {
   padding-left: 2%;
 }
+
+#reviews-ratings-components {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5%;
+  /* set top margin */
+
+}

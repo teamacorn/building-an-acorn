@@ -50,7 +50,7 @@ export const addReviewToReviews = (review) => {
 
 export const markReviewHelpful = (reviewId) => {
   return (dispatch) => {
-    axios.put(`/reviews/${review_id}/helpful`)
+    axios.put(`/reviews/${reviewId}/helpful`)
       .then(res => {
         console.log("Marked review as helpful");
       })
@@ -62,7 +62,7 @@ export const markReviewHelpful = (reviewId) => {
 
 export const reportReview = (reviewId) => {
   return (dispatch) => {
-    axios.put(`/reviews/${review_id}/report`)
+    axios.put(`/reviews/${reviewId}/report`)
       .then(res => {
         console.log("Review has been reported");
       })
