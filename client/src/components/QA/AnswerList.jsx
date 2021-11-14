@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import Button from '@mui/material/Button';
+import AnswerImageList from './AnswerImageList.jsx';
 
 
 const AnswerList = ({answers}) => {
-  // answers is an object
+
+  const defaultNumOfAnswers = 1; // TODO: try 2?
   const sortedAnswers = sortAnswer(answers);
-  const [numOfAnswers, setNumOfAnswers] = useState(2);
+  const [numOfAnswers, setNumOfAnswers] = useState(defaultNumOfAnswers); // TODO: 2
   const [moreAnswerBtnText, setMoreAnswerBtnText] = useState('LOAD MORE ANSWER');
 
   var onClickHandlerMoreAnswer = () => {
-    if (numOfAnswers !== 2) {
-      setNumOfAnswers(2);
+    if (numOfAnswers !== defaultNumOfAnswers) {
+      setNumOfAnswers(defaultNumOfAnswers);
     } else {
       setNumOfAnswers(Object.keys(answers).length);
     }
@@ -29,7 +32,6 @@ const AnswerList = ({answers}) => {
 
   return (
     <>
-      {console.log(sortedAnswers.slice(0, numOfAnswers))}
       {
         sortedAnswers.slice(0, numOfAnswers).map((answer, index) => {
           return (
@@ -39,6 +41,7 @@ const AnswerList = ({answers}) => {
                   <div className='accordion-question-detail'>
                     <span className='qa-header'>A: </span>&nbsp;&nbsp;
                     {answer[1].body} <br/><br/>
+                    <AnswerImageList photos={answer[1].photos} /><br/>
                     <p className='qa-small'>
                       &emsp;&nbsp;&nbsp; &nbsp; by {answer[1].answerer_name}, {dateFormatter(answer[1].date)} &ensp;| &ensp;
                       Helpful? <a className='report-helpful-btn'>Yes</a> ({answer[1].helpfulness}) &ensp;| &ensp;
@@ -51,6 +54,7 @@ const AnswerList = ({answers}) => {
                 <AccordionDetails className='answer-list-tabbed' key={answer[0]}>
                   &emsp;&nbsp;&nbsp;&nbsp;&nbsp;{answer[1].body} <br/><br/>
                   <p className='qa-small'>
+                  <AnswerImageList photos={answer[1].photos} /> <br/>
                   &emsp;&nbsp; &nbsp;&nbsp; by {answer[1].answerer_name}, {dateFormatter(answer[1].date)} &ensp;| &ensp;
                   Helpful? <a className='report-helpful-btn'>Yes</a> ({answer[1].helpfulness}) &ensp;| &ensp;
                   <a onClick={onClickHandlerReport} className="report-helpful-btn report-btn">Report</a>
@@ -65,7 +69,13 @@ const AnswerList = ({answers}) => {
           return (numOfAnswers !== answers.length)?
           (
             <>
-              &emsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp;<button onClick={onClickHandlerMoreAnswer}>{moreAnswerBtnText}</button>
+              &emsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp;
+              <Button 
+                style={{height: 'fit-content', padding: '0px', textDecoration: 'underline'}} 
+                onClick={onClickHandlerMoreAnswer}
+              >
+                {moreAnswerBtnText}
+              </Button>
             </>
           ):
           (<></>)
