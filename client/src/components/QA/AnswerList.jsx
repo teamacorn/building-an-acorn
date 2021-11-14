@@ -4,15 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 
 const AnswerList = ({answers}) => {
   // answers is an object
-  // TODO: sort answers based on helpfulness
-  var sortable = [];
-  for (var a in answers) {
-    sortable.push([a, answers[a]]);
-  }
-  sortable.sort((a, b) => {
-    return parseInt(b[1].helpfulness) - parseInt(a[1].helpfulness);
-  });
-
+  const sortedAnswers = sortAnswer(answers);
   const [numOfAnswers, setNumOfAnswers] = useState(2);
   const [moreAnswerBtnText, setMoreAnswerBtnText] = useState('LOAD MORE ANSWER');
 
@@ -37,29 +29,30 @@ const AnswerList = ({answers}) => {
 
   return (
     <>
+      {console.log(sortedAnswers.slice(0, numOfAnswers))}
       {
-        Object.keys(answers).slice(0, numOfAnswers).map((key, index) => {
+        sortedAnswers.slice(0, numOfAnswers).map((answer, index) => {
           return (
             ((index === 0)?
             (
-                <AccordionDetails key={key}>
+                <AccordionDetails key={answer[0]}>
                   <div className='accordion-question-detail'>
                     <span className='qa-header'>A: </span>&nbsp;&nbsp;
-                    {answers[key].body} <br/><br/>
+                    {answer[1].body} <br/><br/>
                     <p className='qa-small'>
-                      &emsp;&nbsp;&nbsp; &nbsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} &ensp;| &ensp;
-                      Helpful? <a className='report-helpful-btn'>Yes</a> ({answers[key].helpfulness}) &ensp;| &ensp;
+                      &emsp;&nbsp;&nbsp; &nbsp; by {answer[1].answerer_name}, {dateFormatter(answer[1].date)} &ensp;| &ensp;
+                      Helpful? <a className='report-helpful-btn'>Yes</a> ({answer[1].helpfulness}) &ensp;| &ensp;
                       <a onClick={onClickHandlerReport} className="report-helpful-btn report-btn">Report</a>
                     </p>
                   </div>
                 </AccordionDetails>
             ):
             (
-                <AccordionDetails className='answer-list-tabbed' key={key}>
-                  &emsp;&nbsp;&nbsp;&nbsp;&nbsp;{answers[key].body} <br/><br/>
+                <AccordionDetails className='answer-list-tabbed' key={answer[0]}>
+                  &emsp;&nbsp;&nbsp;&nbsp;&nbsp;{answer[1].body} <br/><br/>
                   <p className='qa-small'>
-                  &emsp;&nbsp; &nbsp;&nbsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} &ensp;| &ensp;
-                  Helpful? <a className='report-helpful-btn'>Yes</a> ({answers[key].helpfulness}) &ensp;| &ensp;
+                  &emsp;&nbsp; &nbsp;&nbsp; by {answer[1].answerer_name}, {dateFormatter(answer[1].date)} &ensp;| &ensp;
+                  Helpful? <a className='report-helpful-btn'>Yes</a> ({answer[1].helpfulness}) &ensp;| &ensp;
                   <a onClick={onClickHandlerReport} className="report-helpful-btn report-btn">Report</a>
                   </p>
                 </AccordionDetails>
@@ -81,7 +74,16 @@ const AnswerList = ({answers}) => {
     </>
   )
 }
-
+function sortAnswer(answers) {
+  var sortable = [];
+  for (var a in answers) {
+    sortable.push([a, answers[a]]);
+  }
+  sortable.sort((a, b) => {
+    return parseInt(b[1].helpfulness) - parseInt(a[1].helpfulness);
+  });
+  return sortable;
+}
 function dateFormatter(dateString) {
   // dateString "2021-03-07T00:00:00.000Z"
   // convert to Month DD, YYYY
