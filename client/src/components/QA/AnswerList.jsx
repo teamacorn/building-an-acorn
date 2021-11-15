@@ -35,6 +35,7 @@ const AnswerList = ({answers}) => {
   };
 
   var onClickHandlerHelpful = (e) => {
+    e.target.style.pointerEvents = 'none';
     e.target.style.cursor = 'auto';
     e.target.style.textDecoration = 'none';
     console.log('answer id: ', e.target.name);
