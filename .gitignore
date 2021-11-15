@@ -14,5 +14,9 @@ node_modules/
 ehthumbs.db
 Thumbs.db
 
-bundle.js
+
+# api
 config.js
+
+# ignore bundle.js for now
+bundle.js
