@@ -2,14 +2,16 @@ import React, {useState} from 'react';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Button from '@mui/material/Button';
 import AnswerImageList from './AnswerImageList.jsx';
-
+import {useSelector, useDispatch } from 'react-redux';
+import AddAnswerForm from './AddAnswerForm.jsx';
 
 const AnswerList = ({answers}) => {
-
-  const defaultNumOfAnswers = 1; // TODO: try 2?
+  const dispatch = useDispatch();
+  const defaultNumOfAnswers = 2; // TODO: try 2?
   const sortedAnswers = sortAnswer(answers);
-  const [numOfAnswers, setNumOfAnswers] = useState(defaultNumOfAnswers); // TODO: 2
+  const [numOfAnswers, setNumOfAnswers] = useState(defaultNumOfAnswers);
   const [moreAnswerBtnText, setMoreAnswerBtnText] = useState('LOAD MORE ANSWER');
+
 
   var onClickHandlerMoreAnswer = () => {
     if (numOfAnswers !== defaultNumOfAnswers) {
@@ -28,6 +30,21 @@ const AnswerList = ({answers}) => {
     e.target.textContent = 'Reported';
     e.target.style.pointerEvents = 'none';
     e.target.style.textDecoration = 'none';
+
+    // TODO: dispatch
+    // no need to do this cuz API does not work
+  };
+
+  var onClickHandlerHelpful = (e) => {
+    e.target.style.cursor = 'auto';
+    e.target.style.textDecoration = 'none';
+    console.log('answer id: ', e.target.name);
+    var helpfulness = document.getElementById(e.target.name).innerHTML;
+    console.log(helpfulness)
+    document.getElementById(e.target.name).innerHTML = '(' + (parseInt(helpfulness.substring(1, helpfulness.length))+1) + ')';
+
+    // TODO: dispath
+    // no need to do this cuz API does not work
   };
 
   return (
@@ -41,10 +58,10 @@ const AnswerList = ({answers}) => {
                   <div className='accordion-question-detail'>
                     <span className='qa-header'>A: </span>&nbsp;&nbsp;
                     {answer[1].body} <br/><br/>
-                    <AnswerImageList photos={answer[1].photos} /><br/>
+                    &emsp;&nbsp;&nbsp;&nbsp;&nbsp;<AnswerImageList photos={answer[1].photos} /><br/>
                     <p className='qa-small'>
                       &emsp;&nbsp;&nbsp; &nbsp; by {answer[1].answerer_name}, {dateFormatter(answer[1].date)} &ensp;| &ensp;
-                      Helpful? <a className='report-helpful-btn'>Yes</a> ({answer[1].helpfulness}) &ensp;| &ensp;
+                      Helpful? <a name={answer[0]} onClick={onClickHandlerHelpful} className='report-helpful-btn'>Yes</a> <span id={answer[0]}>({answer[1].helpfulness})</span> &ensp;| &ensp;
                       <a onClick={onClickHandlerReport} className="report-helpful-btn report-btn">Report</a>
                     </p>
                   </div>
@@ -52,11 +69,11 @@ const AnswerList = ({answers}) => {
             ):
             (
                 <AccordionDetails className='answer-list-tabbed' key={answer[0]}>
-                  &emsp;&nbsp;&nbsp;&nbsp;&nbsp;{answer[1].body} <br/><br/>
+                  &emsp;&nbsp;&nbsp;&nbsp;{answer[1].body} <br/><br/>
                   <p className='qa-small'>
-                  <AnswerImageList photos={answer[1].photos} /> <br/>
+                  &emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<AnswerImageList photos={answer[1].photos} /> <br/>
                   &emsp;&nbsp; &nbsp;&nbsp; by {answer[1].answerer_name}, {dateFormatter(answer[1].date)} &ensp;| &ensp;
-                  Helpful? <a className='report-helpful-btn'>Yes</a> ({answer[1].helpfulness}) &ensp;| &ensp;
+                  Helpful? <a name={answer[0]} onClick={onClickHandlerHelpful} className='report-helpful-btn'>Yes</a> <span id={answer[0]}>({answer[1].helpfulness})</span> &ensp;| &ensp;
                   <a onClick={onClickHandlerReport} className="report-helpful-btn report-btn">Report</a>
                   </p>
                 </AccordionDetails>
@@ -69,9 +86,16 @@ const AnswerList = ({answers}) => {
           return (numOfAnswers !== answers.length)?
           (
             <>
-              &emsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp;
-              <Button 
-                style={{height: 'fit-content', padding: '0px', textDecoration: 'underline'}} 
+              &emsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+              <Button
+                size="small"
+                variant="outlined"
+                className='show-more-ans-btn'
+                style={{
+                  // textDecoration: 'underline'
+                  // paddingRight: '0px',
+                  // paddingLeft: '0px'
+                }}
                 onClick={onClickHandlerMoreAnswer}
               >
                 {moreAnswerBtnText}

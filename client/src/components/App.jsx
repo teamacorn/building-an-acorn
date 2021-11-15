@@ -11,7 +11,7 @@ function App (){
     <Provider store={store}>
       <div className="App">
         <Stack spacing={2} className='stack-style'>
-          <Overview />
+          {/* <Overview /> */}
           <QA/>
           <></>
         </Stack>

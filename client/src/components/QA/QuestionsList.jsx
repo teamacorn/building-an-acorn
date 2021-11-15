@@ -4,8 +4,20 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AnswerList from './AnswerList.jsx';
 import {useSelector, useDispatch } from 'react-redux';
-
+import {markQuestionHelpful} from './../../redux';
 const QuestionList = ({qaList, numOfQuestions}) => {
+  const dispatch = useDispatch();
+
+  var onClickHandlerHelpful = (e) => {
+    console.log('question id: ',  e.target.name);
+    e.target.style.cursor = 'auto';
+    e.target.style.textDecoration = 'none';
+    var helpfulness = document.getElementById(e.target.name).innerHTML;
+    document.getElementById(e.target.name).innerHTML = '(' + (parseInt(helpfulness.substring(1, helpfulness.length))+1) + ')';
+
+    // TODO: dispatch
+    dispatch(markQuestionHelpful(e.target.name));
+  };
 
   return (
     <div id='qa-question-list'>
@@ -21,7 +33,7 @@ const QuestionList = ({qaList, numOfQuestions}) => {
               <>
               <span className='qa-header' style={{width: '100%'}} dangerouslySetInnerHTML={{__html: result.question_body}}></span>
               <span className='qa-small' style={{textAlign: 'right', width: '100%'}}> 
-                Helpful? <a className='report-helpful-btn'>Yes</a> ({result.question_helpfulness}) &ensp;| 
+                Helpful? <a name={result.question_id} onClick={onClickHandlerHelpful} className='report-helpful-btn'>Yes</a> <span id={result.question_id}>({result.question_helpfulness})</span> &ensp;| 
                 &ensp; <a className="report-helpful-btn">Add an answer</a> 
               </span>
               </>
