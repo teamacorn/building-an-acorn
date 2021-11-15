@@ -3,8 +3,8 @@ import React from 'react';
 const Feature = ({ newFeature, value }) => {
   return (
     <div>
-      <li>{newFeature}</li>
-      <li>{value}</li>
+      <li className='checkMark'>{newFeature}</li>
+      <li className='checkMark'>{value}</li>
     </div>
   )
 }

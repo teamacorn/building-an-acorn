@@ -5,12 +5,15 @@ import Stack from '@mui/material/Stack';
 import store from '../redux/store.js';
 import Overview from './Overview';
 import QA from './QA/QA.jsx';
+import NavBar from './Overview/NavBar/NavBar.jsx'
 
 function App (){
   return (
     <Provider store={store}>
+      <NavBar />
       <div className="App">
         <Stack spacing={2} className='stack-style'>
+
           <Overview />
           <QA/>
           <></>
