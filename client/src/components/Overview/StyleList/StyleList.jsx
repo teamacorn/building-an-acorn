@@ -33,7 +33,7 @@ const StyleList = () => {
     return (
       <div className='styleList'>
         <Rating style={{marginTop: '3%'}} name="quarter-rating-read" value={currentProductRating.averageStarRating} precision={0.25} readOnly />
-        <a href="#reviews"><span>Read all {reviews.reviewsList.length} reviews</span></a>
+        <a href="#reviews" style={{position: 'relative', top: '-6px', left: '5px'}}><span>Read all {reviews.reviewsList.length} reviews</span></a>
         <span style={{display: 'block', marginTop:'3%', textTransform: 'uppercase', opacity: '80%'}}>{currentProduct.product.category}</span>
         <h1 style={{fontSize: "25px", marginTop: '10px'}}>{currentProduct.product.name}</h1>
 
