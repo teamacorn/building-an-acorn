@@ -247,5 +247,5 @@ img.image-gallery-image {
 }
 
 img.image-gallery-image:hover {
-  transform: scale(2.5);
+  transform: scale(2);
 }
