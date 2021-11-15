@@ -23,10 +23,10 @@ const fetchReviewsFailure = (error) => {
   }
 }
 
-export const fetchReviews = (id) => {
+export const fetchReviews = (id, sort='relevant') => {
   return (dispatch) => {
     dispatch(fetchReviewsRequest)
-    axios.get(`/reviews/${id}`)
+    axios.get(`/reviews/${id}?sort=${sort}&count=${Number.MAX_SAFE_INTEGER}`)
     .then((reviews) => {
       dispatch(fetchReviewsSuccess(reviews.data.results));
     })
@@ -40,7 +40,7 @@ export const addReviewToReviews = (review) => {
   return (dispatch) => {
     axios.post(`/reviews`, {review})
       .then(response => {
-        dispatch(fetchReviews())
+        // dispatch(fetchReviews())
       })
       .catch(error => {
         console.error(error.message)
@@ -50,7 +50,7 @@ export const addReviewToReviews = (review) => {
 
 export const markReviewHelpful = (reviewId) => {
   return (dispatch) => {
-    axios.put(`/reviews/${review_id}/helpful`)
+    axios.put(`/reviews/${reviewId}/helpful`)
       .then(res => {
         console.log("Marked review as helpful");
       })
@@ -62,7 +62,7 @@ export const markReviewHelpful = (reviewId) => {
 
 export const reportReview = (reviewId) => {
   return (dispatch) => {
-    axios.put(`/reviews/${review_id}/report`)
+    axios.put(`/reviews/${reviewId}/report`)
       .then(res => {
         console.log("Review has been reported");
       })

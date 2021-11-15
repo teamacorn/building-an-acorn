@@ -1,26 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import ImageGallery from 'react-image-gallery';
-
-// const images = [
-//   {
-//     original: 'https://picsum.photos/id/1018/1000/600/',
-//     thumbnail: 'https://picsum.photos/id/1018/250/150/',
-//   },
-//   {
-//     original: 'https://picsum.photos/id/1015/1000/600/',
-//     thumbnail: 'https://picsum.photos/id/1015/250/150/',
-//   },
-//   {
-//     original: 'https://picsum.photos/id/1019/1000/600/',
-//     thumbnail: 'https://picsum.photos/id/1019/250/150/',
-//   },
-// ];
 
 const MyGallery = () => {
   const styleList = useSelector(state => state.styleList);
   const currentStyleId = useSelector(state => state.styleId.currentStyleId);
-  const [currentImages, setCurrentImages] = useState([])
+  const [currentImages, setCurrentImages] = useState([]);
+
 
     if (styleList.loading || currentStyleId.loading) {
       return (<h2>Loading</h2>)
@@ -39,9 +25,8 @@ const MyGallery = () => {
                   }
                 })
                 return (
-                  // <div key={style.style_id}>
-                  <ImageGallery items={images} thumbnailPosition = 'left' showGalleryPlayButton = {false} showPlayButton = {false} useBrowserFullscreen={false} key={style.style_id}/>
-                  // </div>
+                  <ImageGallery items={images} thumbnailPosition = 'left' showGalleryPlayButton = {false} showPlayButton = {false} useBrowserFullscreen={false} key={style.style_id} />
+
                 )
               }
             })
