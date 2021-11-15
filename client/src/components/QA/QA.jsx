@@ -16,11 +16,11 @@ const QA = () => {
   const [moreQuestionBtnText, setMoreQuestionBtnText] = useState('MORE ANSWERED QUESTIONS');
 
   useEffect(() => {
-    setFilteredQAList(filterQuestionByQuery(queryString)); // this resolves empty filteredQAList 
+    setFilteredQAList(filterQuestionByQuery(queryString)); // this resolves empty filteredQAList
   }, [qaList.qa]);
 
   useEffect(() => {
-    setFilteredQAList(filterQuestionByQuery(queryString)); // this resolves empty filteredQAList 
+    setFilteredQAList(filterQuestionByQuery(queryString)); // this resolves empty filteredQAList
   }, [queryString]);
 
   var onClickHandlerMoreQuestion = () => {
@@ -68,11 +68,11 @@ const QA = () => {
       <div id='qa-component'>
         <p id='qa-title'>QUESTIONS & ANSWERS</p>
         <div id="qa-search-field">
-          <TextField 
+          <TextField
             onChange={onChangeHandler}
             margin="normal"
             fullWidth
-            label="HAVE A QUESTION? SEARCH FOR ANSWER..." 
+            label="HAVE A QUESTION? SEARCH FOR ANSWER..."
             variant="outlined"
             size="small"/>
 

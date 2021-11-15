@@ -7,3 +7,4 @@ export * from './qa/qaActions';
 export * from './overview/currentStyle/currentStyleActions';
 export * from './reviewsRatings/ratings/ratingsActions';
 export * from './reviewsRatings/reviews/reviewsActions';
+export * from './reviewsRatings/currentRating/currentRatingActions';

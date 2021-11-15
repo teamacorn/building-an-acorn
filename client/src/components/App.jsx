@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import store from '../redux/store.js';
 import Overview from './Overview';
 import QA from './QA/QA.jsx';
+import RatingsReviews from './Ratings_Reviews';
 import NavBar from './Overview/NavBar/NavBar.jsx'
 
 function App (){
@@ -16,6 +17,7 @@ function App (){
 
           <Overview />
           <QA/>
+          <RatingsReviews />
           <></>
         </Stack>
       </div>

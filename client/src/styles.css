@@ -35,6 +35,7 @@ body {
   margin-bottom: 3%;
 }
 
+
 .styleNameDiv {
   height: fit-content;
   margin-bottom: 5%;
@@ -98,7 +99,6 @@ button.image-gallery-left-nav:focus, button.image-gallery-right-nav:focus, butto
   outline: none;
   background-color: transparent;
 }
-
 
 .stack-style {
   margin-left: 5%;
@@ -210,9 +210,14 @@ a:hover {
   padding-right: 2%;
 }
 
-#app {
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
-}
+
+#reviews-ratings-components {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5%;
+  /* set top margin */
+
 
 .roundImageContainer {
   margin-bottom: 5%;

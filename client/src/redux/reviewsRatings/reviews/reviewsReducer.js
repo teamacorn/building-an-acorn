@@ -4,7 +4,7 @@ import { FETCH_REVIEWS_FAILURE } from './reviewsTypes.js';
 
 const initialState = {
   loading: false,
-  reviews: [],
+  reviewsList: [],
   error: ''
 };
 
@@ -19,14 +19,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        reviews: action.payload,
+        reviewsList: action.payload,
         error: ''
       }
     case FETCH_REVIEWS_FAILURE:
       return {
         ...state,
         loading: false,
-        reviews: [],
+        reviewsList: [],
         error: action.payload
       }
     default: return state
