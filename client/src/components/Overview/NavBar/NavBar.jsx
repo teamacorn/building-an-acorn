@@ -58,12 +58,10 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const [queryString, setQueryString] = useState('')
 
-  console.log(allProducts.listOfProducts)
   const handleChange = (e) => {
     setQueryString(e.target.value);
     let product = allProducts.listOfProducts.filter(item => item.name.toLowerCase() === e.target.value.toLowerCase())
     if (product.length === 1) {
-      // console.log(product[0])
       dispatch(fetchCurrentProduct(product[0].id))
     }
   }
