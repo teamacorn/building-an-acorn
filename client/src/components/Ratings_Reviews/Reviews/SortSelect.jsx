@@ -16,7 +16,7 @@ export const SortSelect = ({sort}) => {
 
     return (
 
-        <Select name="sort-button" value={label} variant="standard" style={{height: "2em", borderTop: "0px" }} onChange={(e) => {
+        <Select name="sort-button" key="sort" value={label} variant="standard" style={{height: "2em", borderTop: "0px" }} onChange={(e) => {
           sort(e.target.value);
           dispatch(fetchReviews(currentProduct.product.id, e.target.value)), handleLabel(e);
 

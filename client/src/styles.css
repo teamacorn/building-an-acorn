@@ -138,6 +138,10 @@ a:hover {
   padding-left: 2%;
 }
 
+.Button {
+  color: #262626;
+}
+
 #reviews-ratings-components {
   width: 80%;
   margin-right: auto;
@@ -145,4 +149,25 @@ a:hover {
   margin-top: 5%;
   /* set top margin */
 
+}
+
+#left {
+  text-align: left;
+  width: 100%;
+}
+
+#center {
+  text-align: center;
+}
+
+#right {
+  text-align: right;
+  width: 100%;
+}
+
+#review-images {
+  float: left;
+  width:  75px;
+  height: 75px;
+  object-fit: cover;
 }

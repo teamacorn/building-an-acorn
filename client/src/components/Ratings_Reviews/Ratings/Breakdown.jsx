@@ -44,7 +44,7 @@ const Breakdown = () => {
             return (
              <div key={index*213} style={{display: 'flex', maginLeft: '20px'}}>
               <Button variant='text' id="star-five-stars" style={{width: '95px', paddingLeft: '0',textDecoration:'underline'}}key={index} value={tempIndex[index]} onClick={handleClick}>{tempIndex[index]} stars</Button>
-            <LinearProgress variant="determinate"
+            <LinearProgress className="buttonTime" variant="determinate"
             key={index+6}  value={rating} style={{ width: '100%', height: '7px',marginTop: '15px', }}/>
               </div>
             );

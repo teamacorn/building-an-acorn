@@ -15,22 +15,25 @@ const CharBars = () => {
       let tempArr = [];
       tempArr.push(key, Number(parseFloat(innerObj.value).toFixed(2)));
       console.log(tempArr)
-      if (tempArr[0] === 'Quality') { tempArr.push('Poor', 'Perfect', 'Great') } else { tempArr.push('Too small', 'Perfect')};
+      if (tempArr[0] === 'Quality') { tempArr.push('Poor', 'Perfect', 'Great') } else { tempArr.push('Too small', 'Perfect', 'Too big')};
       charArr.push(tempArr);
     }
     console.log(charArr)
 
     return (
-      <Stack spacing={2} alignItems={"center"}>
-      {charArr.map((rating, index) => {
-        return (
-          <div key={index*2.32}>
-          <p>{rating[0]}</p>
-          <LinearProgress variant="determinate" key={index*146} value={rating[1] * 20} style={{ width: '100%' }}/>
-          </div>
+      <div>
+        {charArr.map((rating, index) => {
+          return (
+            <div key={index*2.32}>
+            <p>{rating[0]}</p>
+            <LinearProgress variant="determinate" key={index*146} value={rating[1] * 20} style={{ width: '100%', height: '7px', marginTop: '15px'}}/>
+            <span style={{marginRight:"27%"}}>{rating[2]}</span>
+            <span style={{marginRight:"27%" }} >{rating[3]}</span>
+            <span style={{width: "13%"}}>{rating[4]}</span>
+            </div>
+          )}
         )}
-      )}
-      </Stack>
+      </div>
     )
   }
 }
