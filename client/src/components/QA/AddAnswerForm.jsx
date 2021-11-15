@@ -26,17 +26,18 @@ const AddAnswerForm = ({question_id}) => {
     let answer = document.getElementById("textfield-add-answer-answer").value;
     let email = document.getElementById("textfield-add-answer-email").value;
     let nickname = document.getElementById("textfield-add-answer-nickname").value;
-    let images = document.getElementById("textfield-add-answer-images");
-    let data = {
+    let images = document.getElementById("textfield-add-answer-image");
+    var data = {
       body: answer,
       name: nickname,
       email: email,
     };
     if (images === null) {
-      data.images = [];
+      data.photos = [];
     } else {
-      data.images = images.split(' ');
+      data.photos = images.value.split(' ');
     }
+    console.log(data);
     dispatch(addAnswerToQuestion(question_id, data));
   }
 

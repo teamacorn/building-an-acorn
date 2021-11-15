@@ -70,6 +70,7 @@ router.post('/questions', (req, res) => {
 // test: localhost: 3000/qa/questions/542812/answers
 // {"body": "thanks for asking. good question.", "name": "me, myself, and I", "email": "test@test.com", "photos": ["https://assets.entrepreneur.com/content/3x2/2000/20150824181921-meditate-yoga-relax-calm-zen.jpeg?auto=webp&quality=95&crop=16:9&width=675"]}
 router.post('/questions/:question_id/answers', (req, res) => {
+
   let params = {
     body: req.body.body || '',
     name: req.body.name || '',
