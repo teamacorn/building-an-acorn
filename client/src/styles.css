@@ -76,6 +76,7 @@ button.image-gallery-left-nav:focus, button.image-gallery-right-nav:focus, butto
 .answerImage{
   margin-bottom: 1%;
   margin-right: 1%;
+  
   border: 2px solid grey;
 }
 

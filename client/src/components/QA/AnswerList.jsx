@@ -57,7 +57,9 @@ const AnswerList = ({answers}) => {
                   <div className='accordion-question-detail'>
                     <span className='qa-header'>A: </span>&nbsp;&nbsp;
                     {answer[1].body} <br/><br/>
-                    &emsp;&nbsp;&nbsp;&nbsp;&nbsp;<AnswerImageList photos={answer[1].photos} /><br/>
+                    <div style={{marginLeft: "30px"}}>
+                      <AnswerImageList photos={answer[1].photos} />
+                    </div>
                     <p className='qa-small'>
                       &emsp;&nbsp;&nbsp; &nbsp; by {answer[1].answerer_name}, {dateFormatter(answer[1].date)} &ensp;| &ensp;
                       Helpful? <a name={answer[0]} onClick={onClickHandlerHelpful} className='report-helpful-btn'>Yes</a> <span id={answer[0]}>({answer[1].helpfulness})</span> &ensp;| &ensp;
@@ -69,8 +71,10 @@ const AnswerList = ({answers}) => {
             (
                 <AccordionDetails className='answer-list-tabbed' key={answer[0]}>
                   &emsp;&nbsp;&nbsp;&nbsp;{answer[1].body} <br/><br/>
+                  <div style={{marginLeft: "30px"}}>
+                    <AnswerImageList photos={answer[1].photos} />
+                  </div>
                   <p className='qa-small'>
-                  &emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<AnswerImageList photos={answer[1].photos} /> <br/>
                   &emsp;&nbsp; &nbsp;&nbsp; by {answer[1].answerer_name}, {dateFormatter(answer[1].date)} &ensp;| &ensp;
                   Helpful? <a name={answer[0]} onClick={onClickHandlerHelpful} className='report-helpful-btn'>Yes</a> <span id={answer[0]}>({answer[1].helpfulness})</span> &ensp;| &ensp;
                   <a onClick={onClickHandlerReport} className="report-helpful-btn report-btn">Report</a>
