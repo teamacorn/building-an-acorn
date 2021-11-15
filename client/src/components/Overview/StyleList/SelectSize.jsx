@@ -2,15 +2,29 @@ import React, { useState } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../../../redux';
 import { updateCurrentStyle } from '../../../redux';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
 
 const SelectSize = () => {
   const styleList = useSelector(state => state.styleList);
   const dispatch = useDispatch();
   const currentStyleId = useSelector(state => state.styleId.currentStyleId)
-  const [currentSkuId, setCurrentSkuId] = useState(NaN)
+  const [currentSkuId, setCurrentSkuId] = useState('NaN')
+  const [currentQuantity, setCurrentQuantity] = useState('NaN')
 
   const handleChange = (event) => {
     setCurrentSkuId(event.target.value);
+    if (event.target.value === 'NaN') {
+      setCurrentQuantity('NaN')
+    } else {
+      setCurrentQuantity(1)
+    }
+  }
+
+  const handleChangeQuantity = (event) => {
+    setCurrentQuantity(event.target.value);
   }
 
   const handleSubmit = (event) => {
@@ -29,8 +43,13 @@ const SelectSize = () => {
   } else {
     return (
       <form onSubmit={handleSubmit}>
-      <select name='size' onChange={handleChange}>
-        <option value='NaN'>Select Size</option>
+      <Select
+      className='select'
+      onChange={handleChange}
+      value={currentSkuId}
+      style={{width: '55%', marginRight: '7%', marginBottom: '7%'}}
+      >
+        <MenuItem value={'NaN'}>Select Size</MenuItem>
       {
           styleList.styles.map(style => {
             let skuIds = Object.keys(style.skus);
@@ -38,20 +57,24 @@ const SelectSize = () => {
              return (
               skuIds.map((skuId, index) => {
                 if (style.skus[skuId].quantity > 0) {
-                  return <option key={index} value={skuId}>{style.skus[skuId].size}</option>
+                  return <MenuItem key={index} value={skuId}>{style.skus[skuId].size}</MenuItem>
                 } else {
-                  return <option key={index} disabled>OUT OF STOCK</option>
+                  return <MenuItem key={index} disabled>OUT OF STOCK</MenuItem>
                 }
               }
              ))
             }
           })
         }
-      </select>
-      <select id='quantity' name='quantity'>
+      </Select>
+      <Select id='quantity'
+      onChange={handleChangeQuantity}
+      value={currentQuantity}
+      style={{width: '25%'}}
+      >
         {
           (isNaN(currentSkuId)) ?
-          (<option disabled> - </option>) :
+          (<MenuItem value={'NaN'} disabled> - </MenuItem>) :
           styleList.styles.map(style => {
             if (currentStyleId === style.style_id) {
               let skuIds = Object.keys(style.skus);
@@ -61,13 +84,13 @@ const SelectSize = () => {
                     if (style.skus[currentSkuId].quantity > 15) {
                       return (
                         Array.apply(null, { length: 15 }).map((amount, index) => (
-                          <option key={index + 1}> {index + 1} </option>
+                          <MenuItem key={index + 1} value={index + 1}> {index + 1} </MenuItem>
                          ))
                       )
                     } else {
                       return (
                         Array.apply(null, { length: style.skus[currentSkuId].quantity }).map((amount, index) => (
-                          <option key={index + 1}> {index + 1} </option>
+                          <MenuItem key={index + 1} value={index + 1}> {index + 1} </MenuItem>
                         ))
                       )
                     }
@@ -77,11 +100,11 @@ const SelectSize = () => {
             }
           })
         }
-      </select>
+      </Select>
       {
         (isNaN(currentSkuId)) ?
-        (<input type="submit" className='addToCart' value="Add to Cart" disabled/>) :
-        (<input type="submit" className='addToCart' value="Add to Cart"/>)
+        (<Button variant="outlined" type="submit" className='addToCart' value="Add to Cart" style={{width: '87%', height: '4em' }} disabled>Add to Cart</Button>) :
+        (<Button variant="outlined" type="submit" className='addToCart' value="Add to Cart" style={{width: '87%', height: '4em' }}>Add to Cart</Button>)
       }
     </form>
     )
