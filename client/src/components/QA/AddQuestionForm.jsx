@@ -24,6 +24,7 @@ const AddQuestionForm = () => {
 
   const handleSubmit = (e) => {
     setOpen(false);
+    console.log(document.getElementById("textfield-add-question-question"));
     let question = document.getElementById("textfield-add-question-question").value;
     let email = document.getElementById("textfield-add-question-email").value;
     let nickname = document.getElementById("textfield-add-question-nickname").value;

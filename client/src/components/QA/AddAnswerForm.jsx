@@ -4,14 +4,12 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {useSelector, useDispatch } from 'react-redux';
 import {addAnswerToQuestion} from './../../redux';
 
-const AddAnswerForm = () => {
+const AddAnswerForm = ({question_id}) => {
   const dispatch = useDispatch();
-  const currentProduct = useSelector(state => state.currentProduct);
   const [open, setOpen] = React.useState(false);
 
   const handleClose = () => {
@@ -24,22 +22,27 @@ const AddAnswerForm = () => {
 
   const handleSubmit = (e) => {
     setOpen(false);
-    
-    // let question = document.getElementById("textfield-question").value;
-    // let email = document.getElementById("textfield-email").value;
-    // let nickname = document.getElementById("textfield-nickname").value;
-    // console.log(currentProduct.product.id);
-    // dispatch(addQuestionToProduct({
-    //   body: question,
-    //   name: nickname,
-    //   email: email,
-    //   product_id: currentProduct.product.id
-    // }));
+    console.log(document.getElementById("textfield-add-answer-answer").value)
+    let answer = document.getElementById("textfield-add-answer-answer").value;
+    let email = document.getElementById("textfield-add-answer-email").value;
+    let nickname = document.getElementById("textfield-add-answer-nickname").value;
+    let images = document.getElementById("textfield-add-answer-images");
+    let data = {
+      body: answer,
+      name: nickname,
+      email: email,
+    };
+    if (images === null) {
+      data.images = [];
+    } else {
+      data.images = images.split(' ');
+    }
+    dispatch(addAnswerToQuestion(question_id, data));
   }
 
   return (
   <>
-    <Button size="large" variant="outlined" onClick={handleClickOpen}>ADD A QUESTION +</Button>
+    <a className="report-helpful-btn" onClick={handleClickOpen}>Add an answer</a> 
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle style={{
         paddingBottom: '0'

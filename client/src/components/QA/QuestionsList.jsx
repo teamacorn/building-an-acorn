@@ -5,6 +5,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AnswerList from './AnswerList.jsx';
 import {useSelector, useDispatch } from 'react-redux';
 import {markQuestionHelpful} from './../../redux';
+import AddAnswerForm from './AddAnswerForm.jsx';
+
 const QuestionList = ({qaList, numOfQuestions}) => {
   const dispatch = useDispatch();
 
@@ -27,14 +29,12 @@ const QuestionList = ({qaList, numOfQuestions}) => {
           <Accordion expanded={true} className='qa-list-accordion' style={{ boxShadow: "none" }} key={result.question_id}>
             <AccordionSummary><span className='qa-header'>Q:</span>&nbsp;&nbsp;
             {
-              // (result.question_body[result.question_body.length - 1] === '?')?
-              // (' ' + result.question_body):
-              // (' ' + result.question_body + '?')
+
               <>
               <span className='qa-header' style={{width: '100%'}} dangerouslySetInnerHTML={{__html: result.question_body}}></span>
               <span className='qa-small' style={{textAlign: 'right', width: '100%'}}> 
                 Helpful? <a name={result.question_id} onClick={onClickHandlerHelpful} className='report-helpful-btn'>Yes</a> <span id={result.question_id}>({result.question_helpfulness})</span> &ensp;| 
-                &ensp; <a className="report-helpful-btn">Add an answer</a> 
+                &ensp; <AddAnswerForm question_id={result.question_id}/>
               </span>
               </>
             }

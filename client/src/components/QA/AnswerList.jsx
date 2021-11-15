@@ -3,7 +3,6 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Button from '@mui/material/Button';
 import AnswerImageList from './AnswerImageList.jsx';
 import {useSelector, useDispatch } from 'react-redux';
-import AddAnswerForm from './AddAnswerForm.jsx';
 
 const AnswerList = ({answers}) => {
   const dispatch = useDispatch();
