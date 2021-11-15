@@ -217,6 +217,9 @@ a:hover {
   padding-right: 2%;
 }
 
+.Button {
+  color: #262626;
+}
 
 #reviews-ratings-components {
   width: 80%;
@@ -248,6 +251,27 @@ a:hover {
   stroke-width:1;
 }
 
+
+#left {
+  text-align: left;
+  width: 100%;
+}
+
+#center {
+  text-align: center;
+}
+
+#right {
+  text-align: right;
+  width: 100%;
+}
+
+#review-images {
+  float: left;
+  width:  75px;
+  height: 75px;
+  object-fit: cover;
+}
 img.image-gallery-image {
   transition: all 0.3s ease 0s;
   width: 100%;
