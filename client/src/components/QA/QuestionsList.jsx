@@ -11,7 +11,7 @@ const QuestionList = ({qaList, numOfQuestions}) => {
   const dispatch = useDispatch();
 
   var onClickHandlerHelpful = (e) => {
-    console.log('question id: ',  e.target.name);
+    e.target.style.pointerEvents = 'none';
     e.target.style.cursor = 'auto';
     e.target.style.textDecoration = 'none';
     var helpfulness = document.getElementById(e.target.name).innerHTML;
