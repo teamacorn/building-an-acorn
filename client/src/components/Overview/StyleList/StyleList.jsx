@@ -16,6 +16,7 @@ const StyleList = () => {
   const currentProduct = useSelector(state => state.currentProduct)
   const currentStyleId = useSelector(state => state.styleId.currentStyleId)
   const currentProductRating = useSelector(state => state.ratings)
+  const reviews = useSelector(state => state.reviews)
   const dispatch = useDispatch();
   const [styleId, setStyleId] = useState(NaN)
 
@@ -24,7 +25,7 @@ const StyleList = () => {
     dispatch(updateCurrentStyle(parseInt(event.target.id)))
   }
 
-  if (styleList.loading || currentProduct.loading || styleList.styles.length === 0 || isNaN(currentStyleId) || currentProductRating.loading || (currentProduct.product.category === '') || (styleList.styles.filter(style => (parseInt(style.style_id) === currentStyleId))[0] === undefined)) {
+  if (styleList.loading || currentProduct.loading || styleList.styles.length === 0 || isNaN(currentStyleId) || currentProductRating.loading || (currentProduct.product.category === '') || (styleList.styles.filter(style => (parseInt(style.style_id) === currentStyleId))[0] === undefined) || reviews.loading) {
     return (<h2></h2>)
   } else if (styleList.error) {
     return <div>{styleList.error}</div>
@@ -32,6 +33,7 @@ const StyleList = () => {
     return (
       <div className='styleList'>
         <Rating style={{marginTop: '3%'}} name="quarter-rating-read" value={currentProductRating.averageStarRating} precision={0.25} readOnly />
+        <a href="#reviews"><span>Read all {reviews.reviewsList.length} reviews</span></a>
         <span style={{display: 'block', marginTop:'3%', textTransform: 'uppercase', opacity: '80%'}}>{currentProduct.product.category}</span>
         <h1 style={{fontSize: "25px", marginTop: '10px'}}>{currentProduct.product.name}</h1>
 
