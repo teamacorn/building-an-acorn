@@ -1,24 +1,20 @@
 import React, {useState} from 'react';
 import AccordionDetails from '@mui/material/AccordionDetails';
-
+import Button from '@mui/material/Button';
+import AnswerImageList from './AnswerImageList.jsx';
+import {useSelector, useDispatch } from 'react-redux';
 
 const AnswerList = ({answers}) => {
-  // answers is an object
-  // TODO: sort answers based on helpfulness
-  var sortable = [];
-  for (var a in answers) {
-    sortable.push([a, answers[a]]);
-  }
-  sortable.sort((a, b) => {
-    return parseInt(b[1].helpfulness) - parseInt(a[1].helpfulness);
-  });
-
-  const [numOfAnswers, setNumOfAnswers] = useState(2);
+  const dispatch = useDispatch();
+  const defaultNumOfAnswers = 2; // TODO: try 2?
+  const sortedAnswers = sortAnswer(answers);
+  const [numOfAnswers, setNumOfAnswers] = useState(defaultNumOfAnswers);
   const [moreAnswerBtnText, setMoreAnswerBtnText] = useState('LOAD MORE ANSWER');
 
+
   var onClickHandlerMoreAnswer = () => {
-    if (numOfAnswers !== 2) {
-      setNumOfAnswers(2);
+    if (numOfAnswers !== defaultNumOfAnswers) {
+      setNumOfAnswers(defaultNumOfAnswers);
     } else {
       setNumOfAnswers(Object.keys(answers).length);
     }
@@ -33,33 +29,54 @@ const AnswerList = ({answers}) => {
     e.target.textContent = 'Reported';
     e.target.style.pointerEvents = 'none';
     e.target.style.textDecoration = 'none';
+
+    // TODO: dispatch
+    // no need to do this cuz API does not work
+  };
+
+  var onClickHandlerHelpful = (e) => {
+    e.target.style.cursor = 'auto';
+    e.target.style.textDecoration = 'none';
+    console.log('answer id: ', e.target.name);
+    var helpfulness = document.getElementById(e.target.name).innerHTML;
+    console.log(helpfulness)
+    document.getElementById(e.target.name).innerHTML = '(' + (parseInt(helpfulness.substring(1, helpfulness.length))+1) + ')';
+
+    // TODO: dispath
+    // no need to do this cuz API does not work
   };
 
   return (
     <>
       {
-        Object.keys(answers).slice(0, numOfAnswers).map((key, index) => {
+        sortedAnswers.slice(0, numOfAnswers).map((answer, index) => {
           return (
             ((index === 0)?
             (
-                <AccordionDetails key={key}>
+                <AccordionDetails key={answer[0]}>
                   <div className='accordion-question-detail'>
                     <span className='qa-header'>A: </span>&nbsp;&nbsp;
-                    {answers[key].body} <br/><br/>
+                    {answer[1].body} <br/><br/>
+                    <div style={{marginLeft: "30px"}}>
+                      <AnswerImageList photos={answer[1].photos} />
+                    </div>
                     <p className='qa-small'>
-                      &emsp;&nbsp;&nbsp; &nbsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} &ensp;| &ensp;
-                      Helpful? <a className='report-helpful-btn'>Yes</a> ({answers[key].helpfulness}) &ensp;| &ensp;
+                      &emsp;&nbsp;&nbsp; &nbsp; by {answer[1].answerer_name}, {dateFormatter(answer[1].date)} &ensp;| &ensp;
+                      Helpful? <a name={answer[0]} onClick={onClickHandlerHelpful} className='report-helpful-btn'>Yes</a> <span id={answer[0]}>({answer[1].helpfulness})</span> &ensp;| &ensp;
                       <a onClick={onClickHandlerReport} className="report-helpful-btn report-btn">Report</a>
                     </p>
                   </div>
                 </AccordionDetails>
             ):
             (
-                <AccordionDetails className='answer-list-tabbed' key={key}>
-                  &emsp;&nbsp;&nbsp;&nbsp;&nbsp;{answers[key].body} <br/><br/>
+                <AccordionDetails className='answer-list-tabbed' key={answer[0]}>
+                  &emsp;&nbsp;&nbsp;&nbsp;{answer[1].body} <br/><br/>
+                  <div style={{marginLeft: "30px"}}>
+                    <AnswerImageList photos={answer[1].photos} />
+                  </div>
                   <p className='qa-small'>
-                  &emsp;&nbsp; &nbsp;&nbsp; by {answers[key].answerer_name}, {dateFormatter(answers[key].date)} &ensp;| &ensp;
-                  Helpful? <a className='report-helpful-btn'>Yes</a> ({answers[key].helpfulness}) &ensp;| &ensp;
+                  &emsp;&nbsp; &nbsp;&nbsp; by {answer[1].answerer_name}, {dateFormatter(answer[1].date)} &ensp;| &ensp;
+                  Helpful? <a name={answer[0]} onClick={onClickHandlerHelpful} className='report-helpful-btn'>Yes</a> <span id={answer[0]}>({answer[1].helpfulness})</span> &ensp;| &ensp;
                   <a onClick={onClickHandlerReport} className="report-helpful-btn report-btn">Report</a>
                   </p>
                 </AccordionDetails>
@@ -72,7 +89,20 @@ const AnswerList = ({answers}) => {
           return (numOfAnswers !== answers.length)?
           (
             <>
-              &emsp; &nbsp;&nbsp;  &nbsp; &nbsp;&nbsp;<button onClick={onClickHandlerMoreAnswer}>{moreAnswerBtnText}</button>
+              &emsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+              <Button
+                size="small"
+                variant="outlined"
+                className='show-more-ans-btn'
+                style={{
+                  // textDecoration: 'underline'
+                  // paddingRight: '0px',
+                  // paddingLeft: '0px'
+                }}
+                onClick={onClickHandlerMoreAnswer}
+              >
+                {moreAnswerBtnText}
+              </Button>
             </>
           ):
           (<></>)
@@ -81,7 +111,16 @@ const AnswerList = ({answers}) => {
     </>
   )
 }
-
+function sortAnswer(answers) {
+  var sortable = [];
+  for (var a in answers) {
+    sortable.push([a, answers[a]]);
+  }
+  sortable.sort((a, b) => {
+    return parseInt(b[1].helpfulness) - parseInt(a[1].helpfulness);
+  });
+  return sortable;
+}
 function dateFormatter(dateString) {
   // dateString "2021-03-07T00:00:00.000Z"
   // convert to Month DD, YYYY

@@ -14,7 +14,6 @@ function App (){
       <NavBar />
       <div className="App">
         <Stack spacing={2} className='stack-style'>
-
           <Overview />
           <QA/>
           <RatingsReviews />
