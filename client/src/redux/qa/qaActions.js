@@ -47,7 +47,7 @@ export const addQuestionToProduct = (question) => {
       .then(res => {
         console.log(`Question to product #${question.product_id} is posted`);
         // TODO: should I fetch qaList again?
-        //dispatch(fetchQA(question.product_id));
+        // dispatch(fetchQA(question.product_id));
       })
       .catch(err => {
         console.error('Failed to post question:', question);

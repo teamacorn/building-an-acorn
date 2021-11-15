@@ -14,11 +14,10 @@ const CharBars = () => {
     for (var [key, innerObj] of Object.entries(char)) {
       let tempArr = [];
       tempArr.push(key, Number(parseFloat(innerObj.value).toFixed(2)));
-      console.log(tempArr)
+      
       if (tempArr[0] === 'Quality') { tempArr.push('Poor', 'Perfect', 'Great') } else { tempArr.push('Too small', 'Perfect', 'Too big')};
       charArr.push(tempArr);
     }
-    console.log(charArr)
 
     return (
       <div>

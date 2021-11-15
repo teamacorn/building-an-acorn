@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import reviews from './reviews.jsx';
+import reviews from './Reviews.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import NativeSelect from '@mui/material/NativeSelect';
 import { fetchReviews } from '../../../redux';

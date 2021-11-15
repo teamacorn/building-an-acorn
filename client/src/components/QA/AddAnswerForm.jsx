@@ -4,14 +4,12 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {useSelector, useDispatch } from 'react-redux';
-import {addQuestionToProduct} from './../../redux';
+import {addAnswerToQuestion} from './../../redux';
 
-const AddQuestionForm = () => {
+const AddAnswerForm = ({question_id}) => {
   const dispatch = useDispatch();
-  const currentProduct = useSelector(state => state.currentProduct);
   const [open, setOpen] = React.useState(false);
 
   const handleClose = () => {
@@ -24,72 +22,78 @@ const AddQuestionForm = () => {
 
   const handleSubmit = (e) => {
     setOpen(false);
-    console.log(document.getElementById("textfield-add-question-question"));
-    let question = document.getElementById("textfield-add-question-question").value;
-    let email = document.getElementById("textfield-add-question-email").value;
-    let nickname = document.getElementById("textfield-add-question-nickname").value;
-    console.log(currentProduct.product.id);
-    dispatch(addQuestionToProduct({
-      body: question,
+    console.log(document.getElementById("textfield-add-answer-answer").value)
+    let answer = document.getElementById("textfield-add-answer-answer").value;
+    let email = document.getElementById("textfield-add-answer-email").value;
+    let nickname = document.getElementById("textfield-add-answer-nickname").value;
+    let images = document.getElementById("textfield-add-answer-image");
+    var data = {
+      body: answer,
       name: nickname,
       email: email,
-      product_id: currentProduct.product.id
-    }));
+    };
+    if (images === null) {
+      data.photos = [];
+    } else {
+      data.photos = images.value.split(' ');
+    }
+    console.log(data);
+    dispatch(addAnswerToQuestion(question_id, data));
   }
 
   return (
   <>
-    <Button size="large" variant="outlined" onClick={handleClickOpen}>ADD A QUESTION +</Button>
+    <a className="report-helpful-btn" onClick={handleClickOpen}>Add an answer</a> 
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle style={{
         paddingBottom: '0'
-      }}>Add Your Question 
+      }}>Add Your Answer 
       </DialogTitle>
       <DialogTitle style={{
         fontSize: 'medium',
         paddingTop: '0',
       }}>
-        About the {currentProduct.product.name}
+        You must enter the following: 
       </DialogTitle>
       <DialogContent style={{
         marginTop: '5px'
       }}>
         <TextField
           variant='filled'
-          id="textfield-add-question-question"
+          id="textfield-add-answer-answer"
           required
-          label="Enter your question"
+          label="Enter your answer"
           multiline
           fullWidth
-          rows={4}
+          rows={3}
         />
         <TextField
           variant='filled'
-          id="textfield-add-question-email"
+          id="textfield-add-answer-email"
           fullWidth
           required
           margin="dense"
           label="Email Address"
           type="email"
         />
-        <DialogContentText style={{
-          fontSize: 'small'
-        }}>
-          * For authentication reasons, you will not be emailed
-        </DialogContentText>
+
         <TextField
           variant='filled'
-          id="textfield-add-question-nickname"
+          id="textfield-add-answer-nickname"
           fullWidth
           required
           margin="dense"
           label="Nickname"
         />
-        <DialogContentText style={{
-          fontSize: 'small'
-        }}>
-          * For privacy reasons, do not use your full name or email address
-        </DialogContentText>
+
+        <TextField
+          variant='filled'
+          id="textfield-add-answer-image"
+          fullWidth
+          required
+          margin="dense"
+          label="Images"
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
@@ -100,4 +104,4 @@ const AddQuestionForm = () => {
   )
 };
 
-export default AddQuestionForm;
+export default AddAnswerForm;
