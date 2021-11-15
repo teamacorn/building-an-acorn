@@ -14,11 +14,9 @@ const CharBars = () => {
     for (var [key, innerObj] of Object.entries(char)) {
       let tempArr = [];
       tempArr.push(key, Number(parseFloat(innerObj.value).toFixed(2)));
-      console.log(tempArr)
       if (tempArr[0] === 'Quality') { tempArr.push('Poor', 'Perfect', 'Great') } else { tempArr.push('Too small', 'Perfect')};
       charArr.push(tempArr);
     }
-    console.log(charArr)
 
     return (
       <Stack spacing={2} alignItems={"center"}>
