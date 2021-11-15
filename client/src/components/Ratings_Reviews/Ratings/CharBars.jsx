@@ -14,7 +14,8 @@ const CharBars = () => {
     for (var [key, innerObj] of Object.entries(char)) {
       let tempArr = [];
       tempArr.push(key, Number(parseFloat(innerObj.value).toFixed(2)));
-      if (tempArr[0] === 'quality') { tempArr.push('poor', 'perfect', 'great') };
+      console.log(tempArr)
+      if (tempArr[0] === 'Quality') { tempArr.push('Poor', 'Perfect', 'Great') } else { tempArr.push('Too small', 'Perfect')};
       charArr.push(tempArr);
     }
     console.log(charArr)
@@ -23,9 +24,9 @@ const CharBars = () => {
       <Stack spacing={2} alignItems={"center"}>
       {charArr.map((rating, index) => {
         return (
-          <div>
+          <div key={index*2.32}>
           <p>{rating[0]}</p>
-          <LinearProgress variant="determinate" key={index}  value={rating[1] * 20} style={{ width: '100%' }}/>
+          <LinearProgress variant="determinate" key={index*146} value={rating[1] * 20} style={{ width: '100%' }}/>
           </div>
         )}
       )}
