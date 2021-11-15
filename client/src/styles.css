@@ -1,20 +1,81 @@
+html, body, #app, #app>div {
+  height: 100%
+}
+
+body {
+  margin: 0;
+}
+
 .circular--portrait {
   width: 55px;
   height: 55px;
   border-radius: 50%;
   object-fit: cover;
 }
+.circular--portrait:hover {
+  cursor: pointer;
+}
 
 .original-price {
-  text-decoration: line-through
+  text-decoration: line-through;
+  display: inline;
+  margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 .sale-price {
-  color: red
+  color: red;
+  display: inline;
+  margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 .prices {
-  height: 50px;
+  display: inline;
+  margin-bottom: 3%;
+}
+
+.styleNameDiv {
+  height: fit-content;
+  margin-bottom: 5%;
+}
+
+.image-gallery-thumbnail.active, .image-gallery-thumbnail:focus {
+  outline: none;
+  height: fit-content;
+  border: 4px solid rgb(37, 37, 37) !important;
+}
+
+.image-gallery-thumbnail:hover {
+    outline: none;
+    border: 4px solid rgb(37, 37, 37)  !important;
+}
+
+.descriptionDiv {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.checkMark {
+  list-style: none;
+  padding: 5px;
+}
+
+.checkMark:before {
+  content: '✓ ';
+}
+
+.descriptionText {
+  width: 77%;
+  padding-right: 10px;
+}
+
+.featureText {
+  width: 23%;
+  padding-left: 15px;
+  border-left: 1px solid black;
 }
 
 .image-gallery-slide img {
@@ -24,7 +85,7 @@
 
 
 .image-gallery-svg:hover {
-  color: gray;
+  color: rgb(37, 37, 37);
 }
 
 .image-gallery-svg {
@@ -42,6 +103,7 @@ button.image-gallery-left-nav:focus, button.image-gallery-right-nav:focus, butto
 .stack-style {
   margin-left: 5%;
   margin-right: 5%;
+  margin-bottom: 5%;
 }
 
 .style-container {
@@ -52,8 +114,92 @@ button.image-gallery-left-nav:focus, button.image-gallery-right-nav:focus, butto
   padding-left: 10%;
 }
 
+.boldedStyle {
+  font-weight:600;
+  font-size:large;
+  text-transform: uppercase
+}
+
+.greyStyleName {
+  opacity: 80%;
+  text-transform: uppercase
+}
+
+/* ----- QA COMPONENTS ----- */
+#qa-component {
+  width:80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#qa-title {
+  margin-top: 5%;
+  margin-bottom: 0;
+  font-size: large;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.qa-list-accordion {
+  padding: 0px;
+}
+
+#qa-bottom-button{
+  margin-top: 3%;
+}
+
+#qa-question-list {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 0
+}
+
+.report-helpful-btn {
+  text-decoration: underline;
+  padding: 1px 6px;
+}
+
+mark {
+  background-color: #8CBAE8;
+  color: black;
+}
+
+.qa-header{
+  font-weight:600;
+  font-size:large;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.qa-small {
+  font-size: small;
+  opacity: 80%;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.question-small {
+  text-align: right;
+}
+
+.accordion-question-detail {
+  margin-bottom: 0;
+  height: fit-content;
+}
+
+#app {
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+a:hover {
+  color: blue;
+  opacity: 1;
+  cursor: pointer;
+}
+
 .icons {
-  padding-top: 10%;
+  padding-top: 7%;
+  display: flex;
+  padding-bottom: 5%;
 }
 
 .FacebookIcon {
@@ -61,7 +207,7 @@ button.image-gallery-left-nav:focus, button.image-gallery-right-nav:focus, butto
 }
 
 .TwitterIcon {
-  padding-left: 2%;
+  padding-right: 2%;
 }
 
 #app {
@@ -70,6 +216,31 @@ button.image-gallery-left-nav:focus, button.image-gallery-right-nav:focus, butto
 
 .roundImageContainer {
   margin-bottom: 5%;
+  position: relative;
 }
 
+.currentStyleSelected {
+  position: absolute;
+  margin-left: 65%;
+  margin-bottom: 7%;
+}
 
+.circle {
+  fill: rgb(209, 209, 209);
+  stroke: black;
+  stroke-width: 2px;
+  }
+.check {
+  fill: black;
+  stroke: none;
+  stroke-width:1;
+}
+
+img.image-gallery-image {
+  transition: all 0.3s ease 0s;
+  width: 100%;
+}
+
+img.image-gallery-image:hover {
+  transform: scale(2.5);
+}

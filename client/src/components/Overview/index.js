@@ -5,6 +5,7 @@ import Description from './Description/Description.jsx'
 import Features from './Description/Features.jsx'
 import Grid from '@mui/material/Grid';
 
+
 const Overview = () => {
   return (
     <div>
@@ -15,13 +16,17 @@ const Overview = () => {
         <Grid item xs={4}>
           <StyleList />
         </Grid>
-        <Grid item xs={8}>
-          <Description />
-        </Grid>
-        <Grid item xs={4}>
-          <Features />
-        </Grid>
       </Grid>
+      <div className='descriptionDiv'>
+        <div className='descriptionText'>
+          <Description />
+        </div>
+        <div className='featureText'>
+          <Features />
+        </div>
+        <div className='isSelectedStyle'>
+        </div>
+      </div>
     </div>
   )
 }

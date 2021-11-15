@@ -36,7 +36,7 @@ export const fetchCurrentProduct = (id) => {
       dispatch(fetchCurrentProductSuccess(currentProduct))
       dispatch(fetchStyleList(id))
       //dispatch reviewList, ReviewMeta, QA List
-      dispatch(fetchQA(id));
+      dispatch(fetchQA(38222)); // TODO: change it back to id
       dispatch(fetchReviews(id));
       dispatch(fetchRatings(id));
     })

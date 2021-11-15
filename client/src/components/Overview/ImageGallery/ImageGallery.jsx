@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import ImageGallery from 'react-image-gallery';
 
 const MyGallery = () => {
   const styleList = useSelector(state => state.styleList);
   const currentStyleId = useSelector(state => state.styleId.currentStyleId);
-  const [currentImages, setCurrentImages] = useState([])
+  const [currentImages, setCurrentImages] = useState([]);
+
 
     if (styleList.loading || currentStyleId.loading) {
       return (<h2>Loading</h2>)
@@ -24,9 +25,8 @@ const MyGallery = () => {
                   }
                 })
                 return (
-                  // <div key={style.style_id}>
-                  <ImageGallery items={images} thumbnailPosition = 'left' showGalleryPlayButton = {false} showPlayButton = {false} useBrowserFullscreen={false} key={style.style_id}/>
-                  // </div>
+                  <ImageGallery items={images} thumbnailPosition = 'left' showGalleryPlayButton = {false} showPlayButton = {false} useBrowserFullscreen={false} key={style.style_id} />
+
                 )
               }
             })

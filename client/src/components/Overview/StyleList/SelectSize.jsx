@@ -74,7 +74,7 @@ const SelectSize = () => {
       >
         {
           (isNaN(currentSkuId)) ?
-          (<MenuItem disabled value={'NaN'}> - </MenuItem>) :
+          (<MenuItem value={'NaN'} disabled> - </MenuItem>) :
           styleList.styles.map(style => {
             if (currentStyleId === style.style_id) {
               let skuIds = Object.keys(style.skus);
