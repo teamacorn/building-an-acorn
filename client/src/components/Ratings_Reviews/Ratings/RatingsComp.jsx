@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { LinkStars, SoloRating } from './RatingsBreakdown.jsx';
 import Breakdown  from './Breakdown.jsx';
 import AverageRating  from './AverageRating.jsx';
-import RatingsBars from './RatingsBars.jsx';
+// import RatingsBars from './RatingsBars.jsx';
 import CharBars  from './CharBars.jsx';
 
 const RatingsComp = () => {
@@ -12,11 +12,11 @@ const RatingsComp = () => {
   return (
     <div>
       <div className="ratings-container">
-        <h3>{`Ratings & Reviews`}</h3>
+        <h5>{`Ratings & Reviews`}</h5>
       </div>
       <AverageRating />
       <Breakdown />
-      <RatingsBars />
+      {/* <RatingsBars /> */}
       <CharBars />
     </div>
 

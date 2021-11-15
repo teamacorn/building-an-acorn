@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 const ReviewsComp = () => {
 
   const [visibleReviews, addVisibleReviews] = useState(2);
-  const [currentSort, setCurrentSort] = useState('relevance');
+  const [currentSort, setCurrentSort] = useState('relevant');
 
   return (
   <div id="reviews">

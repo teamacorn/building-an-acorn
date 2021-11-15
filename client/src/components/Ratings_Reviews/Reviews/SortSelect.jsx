@@ -2,46 +2,31 @@ import React, {useState} from 'react';
 import reviews from './reviews.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import NativeSelect from '@mui/material/NativeSelect';
+import { fetchReviews } from '../../../redux';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export const SortSelect = ({sort}) => {
+    const dispatch = useDispatch();
+    const currentProduct = useSelector(state => state.currentProduct);
+    const [label, setLabel] = useState('relevant');
+
+    const handleLabel = (e) => setLabel(e.target.value);
 
     return (
-        <NativeSelect name="sort-button" onChange={(e) => {
+
+        <Select name="sort-button" value={label} variant="standard" style={{height: "2em", borderTop: "0px" }} onChange={(e) => {
           sort(e.target.value);
+          dispatch(fetchReviews(currentProduct.product.id, e.target.value)), handleLabel(e);
+
           }}>
 
-          <option value="relevant">Relevant</option>
-          <option value="newest">Newest</option>
-          <option value="helpful">Helpful</option>
-        </NativeSelect>
+          <MenuItem value="relevant">Relevant</MenuItem>
+          <MenuItem value="newest">Newest</MenuItem>
+          <MenuItem value="helpful">Helpful</MenuItem>
+        </Select>
+
     )
 }
 
-export default SortSelect;
-
-// const SortSelect = () => {
-
-//   const [age, setAge] = useState('');
-
-//   const handleChange = (event) => {
-//     setAge(event.target.value);
-//   };
-
-//   return (
-//     <div>
-//       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-//         <Select
-//           value={age}
-//           onChange={handleChange}
-//         >
-//           <MenuItem value="">
-//             <em>None</em>
-//           </MenuItem>
-//           <MenuItem value="relevant">Relevant</MenuItem>
-//           <MenuItem value="newest">Newest</MenuItem>
-//           <MenuItem value="helpful">Helpful</MenuItem>
-//         </Select>
-//       </FormControl>
-//       </div>
-//   )
-// }

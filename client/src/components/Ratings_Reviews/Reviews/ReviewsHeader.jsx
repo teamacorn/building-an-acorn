@@ -4,23 +4,20 @@ import { SortSelect } from './SortSelect.jsx';
 
 const ReviewsHeader = ({sort}) => {
   const reviews = useSelector(state => state.reviews);
-    // if (reviews[0] === undefined) {
-    //   return (
-    //     <div className="review-header">
-    //       <h3>
-    //         0 reviews, sorted by &nbsp;
-    //         <SortSelect reviews={reviews}/>
-    //       </h3>
-    //     </div>
-    //   );
-    // }
-  return (
-    <div className="review-header">
-      <h3 id="reviews-overview">{reviews.reviewsList.length} reviews, sorted by &nbsp;
-      <SortSelect reviews={reviews} sort={sort}/>
-      </h3>
-    </div>
-  )
+
+    if (reviews.loading) {
+      return(<div></div>)
+    } else if (reviews.error) {
+      return (<div>{reviews.error}</div>)
+    } else {
+      return (
+        <div className="review-header">
+          <h3 id="reviews-overview">{reviews.reviewsList.length} reviews, sorted by &nbsp;
+          <SortSelect sort={sort}/>
+          </h3>
+        </div>
+      )
+    }
 }
 export default ReviewsHeader;
 

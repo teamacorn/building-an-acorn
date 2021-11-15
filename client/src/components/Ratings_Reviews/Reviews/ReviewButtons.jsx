@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { markReviewHelpful, reportReview, addReviewToReviews } from '../../../redux';
 import Reviews from './Reviews.jsx';
@@ -6,24 +6,37 @@ import Button from '@mui/material/Button';
 
 // ----------------------------------------------------------------
 
-export const Helpful = ({helpfulness, id}) => {
+export const Helpful = ({ helpfulness, id }) => {
   const dispatch = useDispatch();
-  const [count, setCount] = useState(helpfulness);
-  const [disable, setDisable] = useState(false);;
+  const [yesCount, setYesCount] = useState(helpfulness);
+  const [noCount, setNoCount] = useState(0);
+
+  const [disable, setDisable] = useState(false);
+
   const increment = () => {
     if (!disable) {
-    setCount(prevCount => prevCount + 1);
-    setDisable(true);
-    dispatch(markReviewHelpful(id));
-    // ^^ Here is the problem
+      setYesCount(prevCount => prevCount + 1);
+      setDisable(true);
+      dispatch(markReviewHelpful(id));
+      //
+    }
+  }
+  const decrement = () => {
+    if (!disable) {
+      setNoCount(prevCount => prevCount + 1);
+      setDisable(true);
+      dispatch(markReviewHelpful(id));
+      //
     }
   }
   return (
     <div className="review-helpful">
       <h5>
-        Helpful?&nbsp;
+        Helpful?&nbsp;&nbsp;
         <a onClick={(increment)}>Yes</a>
-        ({count})&nbsp;&nbsp;|&nbsp;&nbsp;
+        ({yesCount})&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a onClick={(decrement)}>No</a>
+        ({noCount})
       </h5>
     </div>
   )
@@ -31,38 +44,45 @@ export const Helpful = ({helpfulness, id}) => {
 
 // ----------------------------------------------------------------
 
-export const Report = ({id}) => {
+export const Report = ({ id }) => {
   const dispatch = useDispatch();
   const [disable, setDisable] = useState(false);;
   const isClicked = () => {
     if (!disable) {
-    setDisable(true);
-    dispatch(reportReview(id));
+      setDisable(true);
+      dispatch(reportReview(id));
     }
   }
   return (
     <div>
-  <a onClick={(isClicked)}><h5>Report</h5></a>
-  </div>
+      <a onClick={(isClicked)}><h5>Report</h5></a>
+    </div>
   )
 }
 
 // ----------------------------------------------------------------
 
-export const ShowMoreReviews = ({addVisibleReviews}) => {
+export const ShowMoreReviews = ({ addVisibleReviews }) => {
 
-  // const [visibleReviews, addVisibleReviews] = useState(2);
+  const reviewsLength = useSelector(state => state.reviews.reviewsList.length);
 
-  // set on click
+  let counter = 2;
+
   const isClicked = () => {
     addVisibleReviews(prevCount => prevCount + 2)
+    counter += 2;
   }
 
-  return (
-    <div>
-      <button onClick={(isClicked)}>Show More Reviews +</button>
-    </div>
-  )
+
+  // if (reviewsLength < 2 || counter >= reviewsLength-1 ) {
+  //   return (<div></div>)
+  // } else {
+    return (
+      <div>
+        <Button onClick={(isClicked)}>Show More Reviews +</Button>
+      </div>
+    )
+
 }
 
 // ----------------------------------------------------------------
@@ -73,7 +93,7 @@ export const AddReview = () => {
 
   return (
     <div>
-      <button>Add Review</button>
+      <Button>Add Review</Button>
     </div>
   )
 }

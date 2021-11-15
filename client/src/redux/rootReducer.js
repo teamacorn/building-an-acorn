@@ -7,6 +7,7 @@ import qaReducer from './qa/qaReducer';
 import currentStyleIdReducer from './overview/currentStyle/currentStyleReducer';
 import ratingsReducer from './reviewsRatings/ratings/ratingsReducer';
 import reviewsReducer from './reviewsRatings/reviews/reviewsReducer';
+import currentRatingReducer from './reviewsRatings/currentRating/currentRatingReducer'
 
 const rootReducer = combineReducers({
   productList: productListReducer ,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   qaList: qaReducer,
   styleId: currentStyleIdReducer,
   ratings: ratingsReducer,
-  reviews: reviewsReducer
+  reviews: reviewsReducer,
+  currentRating: currentRatingReducer
 });
 
 export default rootReducer;
